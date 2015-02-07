@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -181,6 +181,12 @@ namespace Cloo
                 CL12.ReleaseEvent(Handle);
                 Handle.Invalidate();
             }
+        }
+
+        // For disposal from the command queue
+        internal void DisposeInternal()
+        {
+            Dispose(false);
         }
 
         /// <summary>

@@ -678,10 +678,19 @@ namespace Cloo
         {
             if (manual)
             {
-                //free managed resources
+                //free managed resources   
+                foreach (ComputeEventBase evt in Events)
+                {
+                    if (evt != null) evt.Dispose();
+                }
+                Events.Clear();
             }
 
             // free native resources
+            foreach (ComputeEventBase evt in Events)
+            {
+                if (evt != null) evt.DisposeInternal();
+            }
             if (Handle.IsValid)
             {
                 Trace.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
