@@ -40,7 +40,6 @@ namespace Cloo.Bindings
     /// Contains bindings to the OpenCL 1.2 functions.
     /// </summary>
     /// <remarks> See the OpenCL specification for documentation regarding these functions. </remarks>
-    [SuppressUnmanagedCodeSecurity]
     public class CL12 : CL11
     {
         #region Deprecated functions
@@ -57,7 +56,7 @@ namespace Cloo.Bindings
             Int32 texture,
             out ComputeErrorCode errcode_ret)
         {
-            Trace.WriteLine("WARNING! clCreateFromGLTexture2D has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clCreateFromGLTexture2D has been deprecated in OpenCL 1.2.");
             return CL11.CreateFromGLTexture2D(context, flags, target, miplevel, texture, out errcode_ret);
         }
 
@@ -73,7 +72,7 @@ namespace Cloo.Bindings
             Int32 texture,
             out ComputeErrorCode errcode_ret)
         {
-            Trace.WriteLine("WARNING! clCreateFromGLTexture3D has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clCreateFromGLTexture3D has been deprecated in OpenCL 1.2.");
             return CL11.CreateFromGLTexture3D(context, flags, target, miplevel, texture, out errcode_ret);
         }
         
@@ -91,7 +90,7 @@ namespace Cloo.Bindings
             IntPtr host_ptr,
             out ComputeErrorCode errcode_ret)
         {
-            Trace.WriteLine("WARNING! clCreateImage2D has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clCreateImage2D has been deprecated in OpenCL 1.2.");
             return CL11.CreateImage2D(context, flags, ref image_format, image_width, image_height, image_row_pitch, host_ptr, out errcode_ret);
         }
 
@@ -111,7 +110,7 @@ namespace Cloo.Bindings
             IntPtr host_ptr,
             out ComputeErrorCode errcode_ret)
         {
-            Trace.WriteLine("WARNING! clCreateImage3D has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clCreateImage3D has been deprecated in OpenCL 1.2.");
             return CL11.CreateImage3D(context, flags, ref image_format, image_width, image_height, image_depth, image_row_pitch, image_slice_pitch, host_ptr, out errcode_ret);
         }
         
@@ -122,7 +121,7 @@ namespace Cloo.Bindings
         public new static ComputeErrorCode EnqueueBarrier(
             CLCommandQueueHandle command_queue)
         {
-            Trace.WriteLine("WARNING! clEnqueueBarrier has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clEnqueueBarrier has been deprecated in OpenCL 1.2.");
             return CL11.EnqueueBarrier(command_queue);
         }
 
@@ -134,7 +133,7 @@ namespace Cloo.Bindings
             CLCommandQueueHandle command_queue,
             out CLEventHandle new_event)
         {
-            Trace.WriteLine("WARNING! clEnqueueMarker has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clEnqueueMarker has been deprecated in OpenCL 1.2.");
             return CL11.EnqueueMarker(command_queue, out new_event);
         }
 
@@ -147,7 +146,7 @@ namespace Cloo.Bindings
             Int32 num_events,
             [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_list)
         {
-            Trace.WriteLine("WARNING! clEnqueueWaitForEvents has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clEnqueueWaitForEvents has been deprecated in OpenCL 1.2.");
             return CL11.EnqueueWaitForEvents(command_queue, num_events, event_list);
         }
 
@@ -158,7 +157,7 @@ namespace Cloo.Bindings
         public new static IntPtr GetExtensionFunctionAddress(
             String func_name)
         {
-            Trace.WriteLine("WARNING! clGetExtensionFunctionAddress has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clGetExtensionFunctionAddress has been deprecated in OpenCL 1.2.");
             return CL11.GetExtensionFunctionAddress(func_name);
         }
 
@@ -168,7 +167,7 @@ namespace Cloo.Bindings
         [Obsolete("Deprecated in OpenCL 1.2.")]
         public new static ComputeErrorCode UnloadCompiler()
         {
-            Trace.WriteLine("WARNING! clUnloadCompiler has been deprecated in OpenCL 1.2.");
+            Debug.WriteLine("WARNING! clUnloadCompiler has been deprecated in OpenCL 1.2.");
             return CL11.UnloadCompiler();
         }
 
