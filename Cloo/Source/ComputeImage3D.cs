@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -59,7 +59,7 @@ namespace Cloo
             : base(context, flags)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CL12.CreateImage3D(context.Handle, flags, ref format, new IntPtr(width), new IntPtr(height), new IntPtr(depth), new IntPtr(rowPitch), new IntPtr(slicePitch), data, out error);
+            Handle = CLBindings.cl12.CreateImage3D(context.Handle, flags, ref format, new IntPtr(width), new IntPtr(height), new IntPtr(depth), new IntPtr(rowPitch), new IntPtr(slicePitch), data, out error);
             ComputeException.ThrowOnError(error);
 
             Init();
@@ -90,7 +90,7 @@ namespace Cloo
         {
             CLMemoryHandle image;
             ComputeErrorCode error = ComputeErrorCode.Success;
-            image = CL12.CreateFromGLTexture3D(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
+            image = CLBindings.cl12.CreateFromGLTexture3D(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
             ComputeException.ThrowOnError(error);
 
             return new ComputeImage3D(image, context, flags);

@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -132,7 +132,7 @@ namespace Cloo
         public ComputeProgram(ComputeContext context, string source)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CL12.CreateProgramWithSource(context.Handle, 1, new string[] { source }, null, out error);
+            Handle = CLBindings.cl12.CreateProgramWithSource(context.Handle, 1, new string[] { source }, null, out error);
             ComputeException.ThrowOnError(error);
 
             SetID(Handle.Value);
@@ -153,7 +153,7 @@ namespace Cloo
         public ComputeProgram(ComputeContext context, string[] source)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CL12.CreateProgramWithSource(
+            Handle = CLBindings.cl12.CreateProgramWithSource(
                 context.Handle,
                 source.Length,
                 source,
@@ -197,7 +197,7 @@ namespace Cloo
                     binariesLengths[i] = new IntPtr(binaries[i].Length);
                 }
 
-                Handle = CL12.CreateProgramWithBinary(
+                Handle = CLBindings.cl12.CreateProgramWithBinary(
                     context.Handle,
                     count,
                     deviceHandles,
@@ -240,7 +240,7 @@ namespace Cloo
             buildOptions = (options != null) ? options : "";
             buildNotify = notify;
 
-            ComputeErrorCode error = CL12.BuildProgram(Handle, handleCount, deviceHandles, options, buildNotify, notifyDataPtr);
+            ComputeErrorCode error = CLBindings.cl12.BuildProgram(Handle, handleCount, deviceHandles, options, buildNotify, notifyDataPtr);
             ComputeException.ThrowOnError(error);
         }
 
@@ -255,11 +255,11 @@ namespace Cloo
             int kernelsCount = 0;
             CLKernelHandle[] kernelHandles;
 
-            ComputeErrorCode error = CL12.CreateKernelsInProgram(Handle, 0, null, out kernelsCount);
+            ComputeErrorCode error = CLBindings.cl12.CreateKernelsInProgram(Handle, 0, null, out kernelsCount);
             ComputeException.ThrowOnError(error);
 
             kernelHandles = new CLKernelHandle[kernelsCount];
-            error = CL12.CreateKernelsInProgram(Handle, kernelsCount, kernelHandles, out kernelsCount);
+            error = CLBindings.cl12.CreateKernelsInProgram(Handle, kernelsCount, kernelHandles, out kernelsCount);
             ComputeException.ThrowOnError(error);
 
             for (int i = 0; i < kernelsCount; i++)
@@ -284,7 +284,7 @@ namespace Cloo
         /// <returns> The build log of the <see cref="ComputeProgram"/> for <paramref name="device"/>. </returns>
         public string GetBuildLog(ComputeDevice device)
         {
-            return GetStringInfo<CLProgramHandle, CLDeviceHandle, ComputeProgramBuildInfo>(Handle, device.Handle, ComputeProgramBuildInfo.BuildLog, CL12.GetProgramBuildInfo);
+            return GetStringInfo<CLProgramHandle, CLDeviceHandle, ComputeProgramBuildInfo>(Handle, device.Handle, ComputeProgramBuildInfo.BuildLog, CLBindings.cl12.GetProgramBuildInfo);
         }
 
         /// <summary>
@@ -294,7 +294,7 @@ namespace Cloo
         /// <returns> The <see cref="ComputeProgramBuildStatus"/> of the <see cref="ComputeProgram"/> for <paramref name="device"/>. </returns>
         public ComputeProgramBuildStatus GetBuildStatus(ComputeDevice device)
         {
-            return (ComputeProgramBuildStatus)GetInfo<CLProgramHandle, CLDeviceHandle, ComputeProgramBuildInfo, uint>(Handle, device.Handle, ComputeProgramBuildInfo.Status, CL12.GetProgramBuildInfo);
+            return (ComputeProgramBuildStatus)GetInfo<CLProgramHandle, CLDeviceHandle, ComputeProgramBuildInfo, uint>(Handle, device.Handle, ComputeProgramBuildInfo.Status, CLBindings.cl12.GetProgramBuildInfo);
         }
 
         #endregion
@@ -311,7 +311,7 @@ namespace Cloo
             if (Handle.IsValid)
             {
                 Debug.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
-                CL12.ReleaseProgram(Handle);
+                CLBindings.cl12.ReleaseProgram(Handle);
                 Handle.Invalidate();
             }
         }
@@ -322,7 +322,7 @@ namespace Cloo
 
         private ReadOnlyCollection<byte[]> GetBinaries()
         {
-            IntPtr[] binaryLengths = GetArrayInfo<CLProgramHandle, ComputeProgramInfo, IntPtr>(Handle, ComputeProgramInfo.BinarySizes, CL12.GetProgramInfo);
+            IntPtr[] binaryLengths = GetArrayInfo<CLProgramHandle, ComputeProgramInfo, IntPtr>(Handle, ComputeProgramInfo.BinarySizes, CLBindings.cl12.GetProgramInfo);
 
             GCHandle[] binariesGCHandles = new GCHandle[binaryLengths.Length];
             IntPtr[] binariesPtrs = new IntPtr[binaryLengths.Length];
@@ -340,7 +340,7 @@ namespace Cloo
                 }
 
                 IntPtr sizeRet;
-                ComputeErrorCode error = CL12.GetProgramInfo(Handle, ComputeProgramInfo.Binaries, new IntPtr(binariesPtrs.Length * IntPtr.Size), binariesPtrsGCHandle.AddrOfPinnedObject(), out sizeRet);
+                ComputeErrorCode error = CLBindings.cl12.GetProgramInfo(Handle, ComputeProgramInfo.Binaries, new IntPtr(binariesPtrs.Length * IntPtr.Size), binariesPtrsGCHandle.AddrOfPinnedObject(), out sizeRet);
                 ComputeException.ThrowOnError(error);
             }
             finally

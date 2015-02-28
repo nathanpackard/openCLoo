@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -45,7 +45,7 @@ namespace Cloo
         /// </summary>
         public static void Unload()
         {
-            ComputeErrorCode error = CL12.UnloadCompiler();
+            ComputeErrorCode error = CLBindings.cl12.UnloadCompiler();
             ComputeException.ThrowOnError(error);
         }
 

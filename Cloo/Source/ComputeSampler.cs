@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -108,7 +108,7 @@ namespace Cloo
         public ComputeSampler(ComputeContext context, bool normalizedCoords, ComputeImageAddressing addressing, ComputeImageFiltering filtering)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CL12.CreateSampler(context.Handle, normalizedCoords, addressing, filtering, out error);
+            Handle = CLBindings.cl12.CreateSampler(context.Handle, normalizedCoords, addressing, filtering, out error);
             ComputeException.ThrowOnError(error);
 
             SetID(Handle.Value);
@@ -135,7 +135,7 @@ namespace Cloo
             if (Handle.IsValid)
             {
                 Debug.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
-                CL12.ReleaseSampler(Handle);
+                CLBindings.cl12.ReleaseSampler(Handle);
                 Handle.Invalidate();
             }
         }

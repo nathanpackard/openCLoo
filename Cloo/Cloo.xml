@@ -4,373 +4,333 @@
         <name>Cloo</name>
     </assembly>
     <members>
-        <member name="T:Cloo.Bindings.BindingPlatform">
-            <summary>
-            Represents the platform to use for OpenCL bindings. This is a workaround for poor Dllmap support within the Unity engine.
-            </summary>
-        </member>
-        <member name="F:Cloo.Bindings.BindingPlatform.Mac">
-            <summary>
-            Use Mac bindings.
-            </summary>
-        </member>
-        <member name="F:Cloo.Bindings.BindingPlatform.Windows">
-            <summary>
-            Use Windows bindings.
-            </summary>
-        </member>
-        <member name="F:Cloo.Bindings.BindingPlatform.Unix">
-            <summary>
-            Use Unix bindings.
-            </summary>
-        </member>
-        <member name="T:Cloo.Bindings.CL10">
+        <member name="T:Cloo.Bindings.ICL10">
             <summary>
             Contains bindings to the OpenCL 1.0 functions.
             </summary>
             <remarks> See the OpenCL specification for documentation regarding these functions. </remarks>
         </member>
-        <member name="F:Cloo.Bindings.CL10.libNameWindows">
+        <member name="M:Cloo.Bindings.ICL10.GetPlatformIDs(System.Int32,Cloo.Bindings.CLPlatformHandle[],System.Int32@)">
             <summary>
-            The name of the library (on Windows) that contains the available OpenCL function points.
-            </summary>
-        </member>
-        <member name="F:Cloo.Bindings.CL10.libNameMac">
-            <summary>
-            The name of the library (on Mac) that contains the available OpenCL function points.
-            </summary>
-        </member>
-        <member name="F:Cloo.Bindings.CL10.libNameUnix">
-            <summary>
-            The name of the library (on UNIX) that contains the available OpenCL function points.
-            </summary>
-        </member>
-        <member name="F:Cloo.Bindings.CL10.bindingPlatform">
-            <summary>
-            Get the currently used binding platform.
-            </summary> 
-        </member>
-        <member name="M:Cloo.Bindings.CL10.GetPlatformIDs(System.Int32,Cloo.Bindings.CLPlatformHandle[],System.Int32@)">
-            <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetPlatformInfo(Cloo.Bindings.CLPlatformHandle,Cloo.ComputePlatformInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetPlatformInfo(Cloo.Bindings.CLPlatformHandle,Cloo.ComputePlatformInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetDeviceIDs(Cloo.Bindings.CLPlatformHandle,Cloo.ComputeDeviceTypes,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.Int32@)">
+        <member name="M:Cloo.Bindings.ICL10.GetDeviceIDs(Cloo.Bindings.CLPlatformHandle,Cloo.ComputeDeviceTypes,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.Int32@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetDeviceInfo(Cloo.Bindings.CLDeviceHandle,Cloo.ComputeDeviceInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetDeviceInfo(Cloo.Bindings.CLDeviceHandle,Cloo.ComputeDeviceInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateContext(System.IntPtr[],System.Int32,Cloo.Bindings.CLDeviceHandle[],Cloo.Bindings.ComputeContextNotifier,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateContext(System.IntPtr[],System.Int32,Cloo.Bindings.CLDeviceHandle[],Cloo.Bindings.ComputeContextNotifier,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateContextFromType(System.IntPtr[],Cloo.ComputeDeviceTypes,Cloo.Bindings.ComputeContextNotifier,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateContextFromType(System.IntPtr[],Cloo.ComputeDeviceTypes,Cloo.Bindings.ComputeContextNotifier,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainContext(Cloo.Bindings.CLContextHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainContext(Cloo.Bindings.CLContextHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseContext(Cloo.Bindings.CLContextHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseContext(Cloo.Bindings.CLContextHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetContextInfo(Cloo.Bindings.CLContextHandle,Cloo.ComputeContextInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetContextInfo(Cloo.Bindings.CLContextHandle,Cloo.ComputeContextInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateCommandQueue(Cloo.Bindings.CLContextHandle,Cloo.Bindings.CLDeviceHandle,Cloo.ComputeCommandQueueFlags,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateCommandQueue(Cloo.Bindings.CLContextHandle,Cloo.Bindings.CLDeviceHandle,Cloo.ComputeCommandQueueFlags,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainCommandQueue(Cloo.Bindings.CLCommandQueueHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainCommandQueue(Cloo.Bindings.CLCommandQueueHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseCommandQueue(Cloo.Bindings.CLCommandQueueHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseCommandQueue(Cloo.Bindings.CLCommandQueueHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetCommandQueueInfo(Cloo.Bindings.CLCommandQueueHandle,Cloo.ComputeCommandQueueInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetCommandQueueInfo(Cloo.Bindings.CLCommandQueueHandle,Cloo.ComputeCommandQueueInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.SetCommandQueueProperty(Cloo.Bindings.CLCommandQueueHandle,Cloo.ComputeCommandQueueFlags,System.Boolean,Cloo.ComputeCommandQueueFlags@)">
+        <member name="M:Cloo.Bindings.ICL10.SetCommandQueueProperty(Cloo.Bindings.CLCommandQueueHandle,Cloo.ComputeCommandQueueFlags,System.Boolean,Cloo.ComputeCommandQueueFlags@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateBuffer(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateBuffer(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateImage2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateImage2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateImage3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateImage3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainMemObject(Cloo.Bindings.CLMemoryHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainMemObject(Cloo.Bindings.CLMemoryHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseMemObject(Cloo.Bindings.CLMemoryHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseMemObject(Cloo.Bindings.CLMemoryHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetSupportedImageFormats(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeMemoryType,System.Int32,Cloo.ComputeImageFormat[],System.Int32@)">
+        <member name="M:Cloo.Bindings.ICL10.GetSupportedImageFormats(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeMemoryType,System.Int32,Cloo.ComputeImageFormat[],System.Int32@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetMemObjectInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeMemoryInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetMemObjectInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeMemoryInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetImageInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeImageInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetImageInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeImageInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateSampler(Cloo.Bindings.CLContextHandle,System.Boolean,Cloo.ComputeImageAddressing,Cloo.ComputeImageFiltering,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateSampler(Cloo.Bindings.CLContextHandle,System.Boolean,Cloo.ComputeImageAddressing,Cloo.ComputeImageFiltering,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainSampler(Cloo.Bindings.CLSamplerHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainSampler(Cloo.Bindings.CLSamplerHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseSampler(Cloo.Bindings.CLSamplerHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseSampler(Cloo.Bindings.CLSamplerHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetSamplerInfo(Cloo.Bindings.CLSamplerHandle,Cloo.ComputeSamplerInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetSamplerInfo(Cloo.Bindings.CLSamplerHandle,Cloo.ComputeSamplerInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateProgramWithSource(Cloo.Bindings.CLContextHandle,System.Int32,System.String[],System.IntPtr[],Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateProgramWithSource(Cloo.Bindings.CLContextHandle,System.Int32,System.String[],System.IntPtr[],Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateProgramWithBinary(Cloo.Bindings.CLContextHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.IntPtr[],System.IntPtr[],System.Int32[],Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateProgramWithBinary(Cloo.Bindings.CLContextHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.IntPtr[],System.IntPtr[],System.Int32[],Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainProgram(Cloo.Bindings.CLProgramHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainProgram(Cloo.Bindings.CLProgramHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseProgram(Cloo.Bindings.CLProgramHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseProgram(Cloo.Bindings.CLProgramHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.BuildProgram(Cloo.Bindings.CLProgramHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.String,Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr)">
+        <member name="M:Cloo.Bindings.ICL10.BuildProgram(Cloo.Bindings.CLProgramHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.String,Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.UnloadCompiler">
+        <member name="M:Cloo.Bindings.ICL10.UnloadCompiler">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetProgramInfo(Cloo.Bindings.CLProgramHandle,Cloo.ComputeProgramInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetProgramInfo(Cloo.Bindings.CLProgramHandle,Cloo.ComputeProgramInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetProgramBuildInfo(Cloo.Bindings.CLProgramHandle,Cloo.Bindings.CLDeviceHandle,Cloo.ComputeProgramBuildInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetProgramBuildInfo(Cloo.Bindings.CLProgramHandle,Cloo.Bindings.CLDeviceHandle,Cloo.ComputeProgramBuildInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateKernel(Cloo.Bindings.CLProgramHandle,System.String,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateKernel(Cloo.Bindings.CLProgramHandle,System.String,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateKernelsInProgram(Cloo.Bindings.CLProgramHandle,System.Int32,Cloo.Bindings.CLKernelHandle[],System.Int32@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateKernelsInProgram(Cloo.Bindings.CLProgramHandle,System.Int32,Cloo.Bindings.CLKernelHandle[],System.Int32@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainKernel(Cloo.Bindings.CLKernelHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainKernel(Cloo.Bindings.CLKernelHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseKernel(Cloo.Bindings.CLKernelHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseKernel(Cloo.Bindings.CLKernelHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.SetKernelArg(Cloo.Bindings.CLKernelHandle,System.Int32,System.IntPtr,System.IntPtr)">
+        <member name="M:Cloo.Bindings.ICL10.SetKernelArg(Cloo.Bindings.CLKernelHandle,System.Int32,System.IntPtr,System.IntPtr)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetKernelInfo(Cloo.Bindings.CLKernelHandle,Cloo.ComputeKernelInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetKernelInfo(Cloo.Bindings.CLKernelHandle,Cloo.ComputeKernelInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetKernelWorkGroupInfo(Cloo.Bindings.CLKernelHandle,Cloo.Bindings.CLDeviceHandle,Cloo.ComputeKernelWorkGroupInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetKernelWorkGroupInfo(Cloo.Bindings.CLKernelHandle,Cloo.Bindings.CLDeviceHandle,Cloo.ComputeKernelWorkGroupInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.WaitForEvents(System.Int32,Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.WaitForEvents(System.Int32,Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetEventInfo(Cloo.Bindings.CLEventHandle,Cloo.ComputeEventInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetEventInfo(Cloo.Bindings.CLEventHandle,Cloo.ComputeEventInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.RetainEvent(Cloo.Bindings.CLEventHandle)">
+        <member name="M:Cloo.Bindings.ICL10.RetainEvent(Cloo.Bindings.CLEventHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.ReleaseEvent(Cloo.Bindings.CLEventHandle)">
+        <member name="M:Cloo.Bindings.ICL10.ReleaseEvent(Cloo.Bindings.CLEventHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetEventProfilingInfo(Cloo.Bindings.CLEventHandle,Cloo.ComputeCommandProfilingInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetEventProfilingInfo(Cloo.Bindings.CLEventHandle,Cloo.ComputeCommandProfilingInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.Flush(Cloo.Bindings.CLCommandQueueHandle)">
+        <member name="M:Cloo.Bindings.ICL10.Flush(Cloo.Bindings.CLCommandQueueHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.Finish(Cloo.Bindings.CLCommandQueueHandle)">
+        <member name="M:Cloo.Bindings.ICL10.Finish(Cloo.Bindings.CLCommandQueueHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueReadBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueReadBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueWriteBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueWriteBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueCopyBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueCopyBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueReadImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueReadImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueWriteImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueWriteImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueCopyImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueCopyImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueCopyImageToBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueCopyImageToBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueCopyBufferToImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,Cloo.SysIntX3@,Cloo.SysIntX3@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueCopyBufferToImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,Cloo.SysIntX3@,Cloo.SysIntX3@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueMapBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.ComputeMemoryMappingFlags,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[],Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueMapBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.ComputeMemoryMappingFlags,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[],Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueMapImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.ComputeMemoryMappingFlags,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr@,System.IntPtr@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[],Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueMapImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.ComputeMemoryMappingFlags,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr@,System.IntPtr@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[],Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueUnmapMemObject(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueUnmapMemObject(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueNDRangeKernel(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLKernelHandle,System.Int32,System.IntPtr[],System.IntPtr[],System.IntPtr[],System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueNDRangeKernel(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLKernelHandle,System.Int32,System.IntPtr[],System.IntPtr[],System.IntPtr[],System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueTask(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLKernelHandle,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueTask(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLKernelHandle,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueMarker(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLEventHandle@)">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueMarker(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLEventHandle@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueWaitForEvents(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueWaitForEvents(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueBarrier(Cloo.Bindings.CLCommandQueueHandle)">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueBarrier(Cloo.Bindings.CLCommandQueueHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetExtensionFunctionAddress(System.String)">
+        <member name="M:Cloo.Bindings.ICL10.GetExtensionFunctionAddress(System.String)">
             <summary>
             Gets the extension function address for the given function name,
             or NULL if a valid function can not be found. The client must
@@ -378,42 +338,42 @@
             calling the returned function address.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateFromGLBuffer(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateFromGLBuffer(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateFromGLTexture2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateFromGLTexture2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateFromGLTexture3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateFromGLTexture3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.CreateFromGLRenderbuffer(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL10.CreateFromGLRenderbuffer(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetGLObjectInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeGLObjectType@,System.Int32@)">
+        <member name="M:Cloo.Bindings.ICL10.GetGLObjectInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeGLObjectType@,System.Int32@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.GetGLTextureInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeGLTextureInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL10.GetGLTextureInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeGLTextureInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueAcquireGLObjects(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLMemoryHandle[],System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueAcquireGLObjects(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLMemoryHandle[],System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL10.EnqueueReleaseGLObjects(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLMemoryHandle[],System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL10.EnqueueReleaseGLObjects(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLMemoryHandle[],System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
@@ -436,53 +396,53 @@
             <param name="notifyDataPtr"> The pointer to the optional user data specified in <paramref name="notifyDataPtr"/> argument of <see cref="M:Cloo.ComputeProgram.Build(System.Collections.Generic.ICollection{Cloo.ComputeDevice},System.String,Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr)"/>. </param>
             <remarks> This callback function may be called asynchronously by the OpenCL implementation. It is the application's responsibility to ensure that the callback function is thread-safe. </remarks>
         </member>
-        <member name="T:Cloo.Bindings.CL11">
+        <member name="T:Cloo.Bindings.ICL11">
             <summary>
             Contains bindings to the OpenCL 1.1 functions.
             </summary>
             <remarks> See the OpenCL specification for documentation regarding these functions. </remarks>
         </member>
-        <member name="M:Cloo.Bindings.CL11.CreateSubBuffer(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeBufferCreateType,Cloo.SysIntX2@,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL11.CreateSubBuffer(Cloo.Bindings.CLMemoryHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeBufferCreateType,Cloo.SysIntX2@,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.SetMemObjectDestructorCallback(Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.ComputeMemoryDestructorNotifer,System.IntPtr)">
+        <member name="M:Cloo.Bindings.ICL11.SetMemObjectDestructorCallback(Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.ComputeMemoryDestructorNotifer,System.IntPtr)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.CreateUserEvent(Cloo.Bindings.CLContextHandle,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL11.CreateUserEvent(Cloo.Bindings.CLContextHandle,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.SetUserEventStatus(Cloo.Bindings.CLEventHandle,System.Int32)">
+        <member name="M:Cloo.Bindings.ICL11.SetUserEventStatus(Cloo.Bindings.CLEventHandle,System.Int32)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.SetEventCallback(Cloo.Bindings.CLEventHandle,System.Int32,Cloo.Bindings.ComputeEventCallback,System.IntPtr)">
+        <member name="M:Cloo.Bindings.ICL11.SetEventCallback(Cloo.Bindings.CLEventHandle,System.Int32,Cloo.Bindings.ComputeEventCallback,System.IntPtr)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.EnqueueReadBufferRect(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL11.EnqueueReadBufferRect(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.EnqueueWriteBufferRect(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL11.EnqueueWriteBufferRect(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.Boolean,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.EnqueueCopyBufferRect(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL11.EnqueueCopyBufferRect(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,Cloo.Bindings.CLMemoryHandle,Cloo.SysIntX3@,Cloo.SysIntX3@,Cloo.SysIntX3@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL11.SetCommandQueueProperty(Cloo.Bindings.CLCommandQueueHandle,Cloo.ComputeCommandQueueFlags,System.Boolean,Cloo.ComputeCommandQueueFlags@)">
+        <member name="M:Cloo.Bindings.ICL11.SetCommandQueueProperty(Cloo.Bindings.CLCommandQueueHandle,Cloo.ComputeCommandQueueFlags,System.Boolean,Cloo.ComputeCommandQueueFlags@)">
             <summary>
             See the OpenCL specification.
             </summary>
@@ -504,53 +464,53 @@
             <param name="userData"> A pointer to user supplied data. </param>
             /// <remarks> This callback function may be called asynchronously by the OpenCL implementation. It is the application's responsibility to ensure that the callback function is thread-safe. </remarks>
         </member>
-        <member name="T:Cloo.Bindings.CL12">
+        <member name="T:Cloo.Bindings.ICL12">
             <summary>
             Contains bindings to the OpenCL 1.2 functions.
             </summary>
             <remarks> See the OpenCL specification for documentation regarding these functions. </remarks>
         </member>
-        <member name="M:Cloo.Bindings.CL12.CreateFromGLTexture2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL12.CreateFromGLTexture2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.CreateFromGLTexture3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL12.CreateFromGLTexture3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.CreateImage2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL12.CreateImage2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.CreateImage3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
+        <member name="M:Cloo.Bindings.ICL12.CreateImage3D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.EnqueueBarrier(Cloo.Bindings.CLCommandQueueHandle)">
+        <member name="M:Cloo.Bindings.ICL12.EnqueueBarrier(Cloo.Bindings.CLCommandQueueHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.EnqueueMarker(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLEventHandle@)">
+        <member name="M:Cloo.Bindings.ICL12.EnqueueMarker(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLEventHandle@)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.EnqueueWaitForEvents(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLEventHandle[])">
+        <member name="M:Cloo.Bindings.ICL12.EnqueueWaitForEvents(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLEventHandle[])">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.GetExtensionFunctionAddress(System.String)">
+        <member name="M:Cloo.Bindings.ICL12.GetExtensionFunctionAddress(System.String)">
             <summary>
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.CL12.UnloadCompiler">
+        <member name="M:Cloo.Bindings.ICL12.UnloadCompiler">
             <summary>
             See the OpenCL specification.
             </summary>

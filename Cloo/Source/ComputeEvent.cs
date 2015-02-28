@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -71,7 +71,7 @@ namespace Cloo
             SetID(Handle.Value);
 
             CommandQueue = queue;
-            Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, int>(Handle, ComputeEventInfo.CommandType, CL12.GetEventInfo);
+            Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, int>(Handle, ComputeEventInfo.CommandType, CLBindings.cl12.GetEventInfo);
             Context = queue.Context;
 
             if (ComputeTools.ParseVersionString(CommandQueue.Device.Platform.Version, 1) > new Version(1, 0))
