@@ -45,7 +45,7 @@ namespace Cloo
         /// </summary>
         public static void Unload()
         {
-            ComputeErrorCode error = CLBindings.cl12.UnloadCompiler();
+            ComputeErrorCode error = CLInterface.CL12.UnloadCompiler();
             ComputeException.ThrowOnError(error);
         }
 

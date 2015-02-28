@@ -119,7 +119,7 @@ namespace Cloo
         /// <value> The <see cref="ComputeDevice"/> time counter in nanoseconds when the associated command has finished execution. </value>
         public long FinishTime
         {
-            get { return GetInfo<CLEventHandle, ComputeCommandProfilingInfo, long>(Handle, ComputeCommandProfilingInfo.Ended, CLBindings.cl12.GetEventProfilingInfo); }
+            get { return GetInfo<CLEventHandle, ComputeCommandProfilingInfo, long>(Handle, ComputeCommandProfilingInfo.Ended, CLInterface.CL12.GetEventProfilingInfo); }
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Cloo
         /// <value> The <see cref="ComputeDevice"/> time counter in nanoseconds when the associated command is enqueued in the <see cref="ComputeCommandQueue"/> by the host. </value>
         public long EnqueueTime
         {
-            get { return (long)GetInfo<CLEventHandle, ComputeCommandProfilingInfo, long>(Handle, ComputeCommandProfilingInfo.Queued, CLBindings.cl12.GetEventProfilingInfo); }
+            get { return (long)GetInfo<CLEventHandle, ComputeCommandProfilingInfo, long>(Handle, ComputeCommandProfilingInfo.Queued, CLInterface.CL12.GetEventProfilingInfo); }
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Cloo
         /// <value> The execution status of the associated command or a negative value if the execution was abnormally terminated. </value>
         public ComputeCommandExecutionStatus Status
         {
-            get { return (ComputeCommandExecutionStatus)GetInfo<CLEventHandle, ComputeEventInfo, int>(Handle, ComputeEventInfo.ExecutionStatus, CLBindings.cl12.GetEventInfo); }
+            get { return (ComputeCommandExecutionStatus)GetInfo<CLEventHandle, ComputeEventInfo, int>(Handle, ComputeEventInfo.ExecutionStatus, CLInterface.CL12.GetEventInfo); }
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Cloo
         /// <value> The <see cref="ComputeDevice"/> time counter in nanoseconds when the associated command starts execution. </value>
         public long StartTime
         {
-            get { return (long)GetInfo<CLEventHandle, ComputeCommandProfilingInfo, ulong>(Handle, ComputeCommandProfilingInfo.Started, CLBindings.cl12.GetEventProfilingInfo); }
+            get { return (long)GetInfo<CLEventHandle, ComputeCommandProfilingInfo, ulong>(Handle, ComputeCommandProfilingInfo.Started, CLInterface.CL12.GetEventProfilingInfo); }
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Cloo
         /// <value> The <see cref="ComputeDevice"/> time counter in nanoseconds when the associated command that has been enqueued is submitted by the host to the device. </value>
         public long SubmitTime
         {
-            get { return (long)GetInfo<CLEventHandle, ComputeCommandProfilingInfo, ulong>(Handle, ComputeCommandProfilingInfo.Submitted, CLBindings.cl12.GetEventProfilingInfo); }
+            get { return (long)GetInfo<CLEventHandle, ComputeCommandProfilingInfo, ulong>(Handle, ComputeCommandProfilingInfo.Submitted, CLInterface.CL12.GetEventProfilingInfo); }
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Cloo
             if (Handle.IsValid)
             {
                 Debug.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
-                CLBindings.cl12.ReleaseEvent(Handle);
+                CLInterface.CL12.ReleaseEvent(Handle);
                 Handle.Invalidate();
             }
         }
@@ -195,7 +195,7 @@ namespace Cloo
         protected void HookNotifier()
         {
             statusNotify = new ComputeEventCallback(StatusNotify);
-            ComputeErrorCode error = CLBindings.cl11.SetEventCallback(Handle, (int)ComputeCommandExecutionStatus.Complete, statusNotify, IntPtr.Zero);
+            ComputeErrorCode error = CLInterface.CL11.SetEventCallback(Handle, (int)ComputeCommandExecutionStatus.Complete, statusNotify, IntPtr.Zero);
             ComputeException.ThrowOnError(error);
         }
 

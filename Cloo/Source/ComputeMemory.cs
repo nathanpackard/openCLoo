@@ -112,7 +112,7 @@ namespace Cloo
             if (Handle.IsValid)
             {
                 Debug.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
-                CLBindings.cl12.ReleaseMemObject(Handle);
+                CLInterface.CL12.ReleaseMemObject(Handle);
                 Handle.Invalidate();
             }
         }

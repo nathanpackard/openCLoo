@@ -140,11 +140,11 @@ namespace Cloo
 
                     CLPlatformHandle[] handles;
                     int handlesLength;
-                    ComputeErrorCode error = CLBindings.cl12.GetPlatformIDs(0, null, out handlesLength);
+                    ComputeErrorCode error = CLInterface.CL12.GetPlatformIDs(0, null, out handlesLength);
                     ComputeException.ThrowOnError(error);
                     handles = new CLPlatformHandle[handlesLength];
 
-                    error = CLBindings.cl12.GetPlatformIDs(handlesLength, handles, out handlesLength);
+                    error = CLInterface.CL12.GetPlatformIDs(handlesLength, handles, out handlesLength);
                     ComputeException.ThrowOnError(error);
 
                     List<ComputePlatform> platformList = new List<ComputePlatform>(handlesLength);
@@ -165,13 +165,13 @@ namespace Cloo
             Handle = handle;
             SetID(Handle.Value);
 
-            string extensionString = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Extensions, CLBindings.cl12.GetPlatformInfo);
+            string extensionString = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Extensions, CLInterface.CL12.GetPlatformInfo);
             extensions = new ReadOnlyCollection<string>(extensionString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
 
-            name = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Name, CLBindings.cl12.GetPlatformInfo);
-            profile = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Profile, CLBindings.cl12.GetPlatformInfo);
-            vendor = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Vendor, CLBindings.cl12.GetPlatformInfo);
-            version = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Version, CLBindings.cl12.GetPlatformInfo);
+            name = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Name, CLInterface.CL12.GetPlatformInfo);
+            profile = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Profile, CLInterface.CL12.GetPlatformInfo);
+            vendor = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Vendor, CLInterface.CL12.GetPlatformInfo);
+            version = GetStringInfo<CLPlatformHandle, ComputePlatformInfo>(Handle, ComputePlatformInfo.Version, CLInterface.CL12.GetPlatformInfo);
             QueryDevices();
         }
 
@@ -229,11 +229,11 @@ namespace Cloo
         public ReadOnlyCollection<ComputeDevice> QueryDevices()
         {
             int handlesLength = 0;
-            ComputeErrorCode error = CLBindings.cl12.GetDeviceIDs(Handle, ComputeDeviceTypes.All, 0, null, out handlesLength);
+            ComputeErrorCode error = CLInterface.CL12.GetDeviceIDs(Handle, ComputeDeviceTypes.All, 0, null, out handlesLength);
             ComputeException.ThrowOnError(error);
 
             CLDeviceHandle[] handles = new CLDeviceHandle[handlesLength];
-            error = CLBindings.cl12.GetDeviceIDs(Handle, ComputeDeviceTypes.All, handlesLength, handles, out handlesLength);
+            error = CLInterface.CL12.GetDeviceIDs(Handle, ComputeDeviceTypes.All, handlesLength, handles, out handlesLength);
             ComputeException.ThrowOnError(error);
 
             ComputeDevice[] devices = new ComputeDevice[handlesLength];

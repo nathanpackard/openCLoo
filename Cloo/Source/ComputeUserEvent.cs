@@ -51,12 +51,12 @@ namespace Cloo
         public ComputeUserEvent(ComputeContext context)
         {
             ComputeErrorCode error;
-            Handle = CLBindings.cl11.CreateUserEvent(context.Handle, out error);
+            Handle = CLInterface.CL11.CreateUserEvent(context.Handle, out error);
             ComputeException.ThrowOnError(error);
             
             SetID(Handle.Value);
 
-            Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, uint>(Handle, ComputeEventInfo.CommandType, CLBindings.cl12.GetEventInfo);
+            Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, uint>(Handle, ComputeEventInfo.CommandType, CLInterface.CL12.GetEventInfo);
             Context = context;
             HookNotifier();
 
@@ -82,7 +82,7 @@ namespace Cloo
         /// <param name="status"> The error status of the <see cref="ComputeUserEvent"/>. This should be a negative value. </param>
         public void SetStatus(int status)
         {
-            ComputeErrorCode error = CLBindings.cl11.SetUserEventStatus(Handle, status);
+            ComputeErrorCode error = CLInterface.CL11.SetUserEventStatus(Handle, status);
             ComputeException.ThrowOnError(error);
         }
 

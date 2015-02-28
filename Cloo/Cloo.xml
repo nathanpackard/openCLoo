@@ -515,6 +515,36 @@
             See the OpenCL specification.
             </summary>
         </member>
+        <member name="T:Cloo.Bindings.CLInterface">
+            <summary>
+            Sets the underlying OpenCL library interface for Cloo.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.CLInterface.IsAvailable">
+            <summary>
+            Returns true if the CLInterface has been set.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.CLInterface.SetInterface(Cloo.Bindings.ICL12)">
+            <summary>
+            Sets the underlying OpenCL implementation.
+            </summary>
+        </member>
+        <member name="P:Cloo.Bindings.CLInterface.CL10">
+            <summary>
+            OpenCL 1.0.
+            </summary>
+        </member>
+        <member name="P:Cloo.Bindings.CLInterface.CL11">
+            <summary>
+            OpenCL 1.1.
+            </summary>
+        </member>
+        <member name="P:Cloo.Bindings.CLInterface.CL12">
+            <summary>
+            OpenCL 1.2.
+            </summary>
+        </member>
         <member name="T:Cloo.Bindings.CLCommandQueueHandle">
             <summary>
             Represents the <see cref="T:Cloo.ComputeCommandQueue"/> ID.
