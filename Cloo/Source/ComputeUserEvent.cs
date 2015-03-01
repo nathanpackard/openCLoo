@@ -59,8 +59,6 @@ namespace Cloo
             Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, uint>(Handle, ComputeEventInfo.CommandType, CLInterface.CL12.GetEventInfo);
             Context = context;
             HookNotifier();
-
-            Debug.WriteLine("Create " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
         }
 
         #endregion

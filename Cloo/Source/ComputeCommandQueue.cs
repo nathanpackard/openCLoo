@@ -125,8 +125,6 @@ namespace Cloo
             profiling = ((properties & ComputeCommandQueueFlags.Profiling) == ComputeCommandQueueFlags.Profiling);
             
             Events = new List<ComputeEventBase>();
-
-            Debug.WriteLine("Create " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
         }
 
         #endregion
@@ -693,7 +691,6 @@ namespace Cloo
             }
             if (Handle.IsValid)
             {
-                Debug.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
                 CLInterface.CL12.ReleaseCommandQueue(Handle);
                 Handle.Invalidate();
             }

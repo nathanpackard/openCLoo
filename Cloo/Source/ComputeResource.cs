@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -73,7 +73,6 @@ namespace Cloo
         /// </summary>
         ~ComputeResource()
         {
-            Debug.WriteLine(ToString() + " leaked!", "Warning");
             Dispose(false);
         }
 

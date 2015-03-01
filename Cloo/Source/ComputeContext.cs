@@ -158,8 +158,6 @@ namespace Cloo
             ComputeContextProperty platformProperty = properties.GetByName(ComputeContextPropertyName.Platform);
             this.platform = ComputePlatform.GetByHandle(platformProperty.Value);
             this.devices = GetDevices();
-
-            Debug.WriteLine("Create " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
         }
 
         /// <summary>
@@ -184,8 +182,6 @@ namespace Cloo
             ComputeContextProperty platformProperty = properties.GetByName(ComputeContextPropertyName.Platform);
             this.platform = ComputePlatform.GetByHandle(platformProperty.Value);
             this.devices = GetDevices();
-
-            Debug.WriteLine("Create " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
         }
 
         #endregion
@@ -207,7 +203,6 @@ namespace Cloo
             // free native resources
             if (Handle.IsValid)
             {
-                Debug.WriteLine("Dispose " + this + " in Thread(" + Thread.CurrentThread.ManagedThreadId + ").", "Information");
                 CLInterface.CL12.ReleaseContext(Handle);
                 Handle.Invalidate();
             }
