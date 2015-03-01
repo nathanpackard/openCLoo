@@ -19,7 +19,7 @@ namespace Cloo.Bindings
             get
             {
                 if (_CL10 == null) 
-                    throw new EntryPointNotFoundException();
+                    throw new NotImplementedException();
 
                     return _CL10;
             } 
@@ -32,7 +32,7 @@ namespace Cloo.Bindings
             get
             {
                 if (_CL11 == null)
-                    throw new EntryPointNotFoundException();
+                    throw new NotImplementedException();
 
                 return _CL11;
             }
@@ -45,7 +45,7 @@ namespace Cloo.Bindings
             get
             {
                 if (_CL12 == null)
-                    throw new EntryPointNotFoundException();
+                    throw new NotImplementedException();
 
                 return _CL12;
             }

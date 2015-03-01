@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -38,7 +38,7 @@ namespace Cloo
     /// Represents an error state that occurred while executing an OpenCL API call.
     /// </summary>
     /// <seealso cref="ComputeErrorCode"/>
-    public class ComputeException : ApplicationException
+    public class ComputeException : Exception
     {
         #region Fields
 

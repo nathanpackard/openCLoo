@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
 
@@ -268,7 +268,7 @@ namespace Cloo
             (HandleType handle, InfoType paramName, GetInfoDelegate<HandleType, InfoType> getInfoDelegate)
         {
             byte[] buffer = GetArrayInfo<HandleType, InfoType, byte>(handle, paramName, getInfoDelegate);
-            char[] chars = Encoding.ASCII.GetChars(buffer, 0, buffer.Length);
+            char[] chars = Encoding.UTF8.GetChars(buffer, 0, buffer.Length);
             return (new string(chars)).TrimEnd(new char[] { '\0' });
         }
 
@@ -287,7 +287,7 @@ namespace Cloo
             (MainHandleType mainHandle, SecondHandleType secondHandle, InfoType paramName, GetInfoDelegateEx<MainHandleType, SecondHandleType, InfoType> getInfoDelegate)
         {
             byte[] buffer = GetArrayInfo<MainHandleType, SecondHandleType, InfoType, byte>(mainHandle, secondHandle, paramName, getInfoDelegate);
-            char[] chars = Encoding.ASCII.GetChars(buffer, 0, buffer.Length);
+            char[] chars = Encoding.UTF8.GetChars(buffer, 0, buffer.Length);
             return (new string(chars)).TrimEnd(new char[] { '\0' });
         }
 

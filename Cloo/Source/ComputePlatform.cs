@@ -58,7 +58,10 @@ namespace Cloo
         private readonly string name;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ReadOnlyCollection<ComputePlatform> platforms;
+        private static List<ComputePlatform> platforms;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ComputePlatform[] platformsArray;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string profile;
@@ -101,11 +104,11 @@ namespace Cloo
         public string Name { get { return name; } }
 
         /// <summary>
-        /// Gets a read-only collection of available <see cref="ComputePlatform"/>s.
+        /// Gets a list of available <see cref="ComputePlatform"/>s.
         /// </summary>
-        /// <value> A read-only collection of available <see cref="ComputePlatform"/>s. </value>
-        /// <remarks> The collection will contain no items, if no OpenCL platforms are found on the system. </remarks>
-        public static ReadOnlyCollection<ComputePlatform> Platforms { get { return platforms; } }
+        /// <value> A list of available <see cref="ComputePlatform"/>s. </value>
+        /// <remarks> This list should not be modified. The list will contain no items, if no OpenCL platforms are found on the system. </remarks>
+        public static IList<ComputePlatform> Platforms { get { platforms.CopyTo(platformsArray); return platformsArray; } }
 
         /// <summary>
         /// Gets the name of the profile supported by the <see cref="ComputePlatform"/>.
@@ -151,11 +154,15 @@ namespace Cloo
                     foreach (CLPlatformHandle handle in handles)
                         platformList.Add(new ComputePlatform(handle));
 
-                    platforms = platformList.AsReadOnly();
+                    platforms = platformList;
+                    platformsArray = new ComputePlatform[platforms.Count];
+                    platforms.CopyTo(platformsArray);
                 }
                 catch (DllNotFoundException)
                 {
-                    platforms = new List<ComputePlatform>().AsReadOnly();
+                    platforms = new List<ComputePlatform>();
+                    platformsArray = new ComputePlatform[platforms.Count];
+                    platforms.CopyTo(platformsArray);
                 }
             }
         }
