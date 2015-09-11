@@ -69,6 +69,16 @@ namespace Cloo
         /// <summary> </summary>
         ExecutionStatusErrorForEventsInWaitList = -14,
         /// <summary> </summary>
+        CompileProgramFailure = -15,
+        /// <summary> </summary>
+        LinkerNotAvailable = -16,
+        /// <summary> </summary>
+        LinkProgramFailure = -17,
+        /// <summary> </summary>
+        DevicePartitionFailed = -18,
+        /// <summary> </summary>
+        KernelArgInfoNotAvailable = -19,
+        /// <summary> </summary>
         InvalidValue = -30,
         /// <summary> </summary>
         InvalidDeviceType = -31,
@@ -137,6 +147,20 @@ namespace Cloo
         /// <summary> </summary>
         InvalidGlobalWorkSize = -63,
         /// <summary> </summary>
+        InvalidProperty = -64,
+        /// <summary> </summary>
+        InvalidImageDescriptor = -65,
+        /// <summary> </summary>
+        InvalidCompilerOptions = -66,
+        /// <summary> </summary>
+        InvalidLinkerOptions = -67,
+        /// <summary> </summary>
+        InvalidDevicePartitionCount = -68,
+        /// <summary> </summary>
+        InvalidPipeSize = -69,
+        /// <summary> </summary>
+        InvalidDeviceQueue = -70,
+        /// <summary> </summary>
         CL_INVALID_GL_SHAREGROUP_REFERENCE_KHR = -1000,
         /// <summary> </summary>
         CL_PLATFORM_NOT_FOUND_KHR = -1001,
@@ -156,7 +180,11 @@ namespace Cloo
         /// <summary> </summary>
         Version_1_0 = 1,
         /// <summary> </summary>
-        Version_1_1 = 1
+        Version_1_1 = 1,
+        /// <summary> </summary>
+        Version_1_2 = 1,
+        /// <summary> </summary>
+        Version_2_0 = 1,
     }
 
     /// <summary>
@@ -167,7 +195,11 @@ namespace Cloo
         /// <summary> </summary>
         False = 0,
         /// <summary> </summary>
-        True = 1
+        True = 1,
+        /// <summary> </summary>
+        NonBlocking = 0,
+        /// <summary> </summary>
+        Blocking = 1,
     }
 
     /// <summary>
@@ -203,6 +235,8 @@ namespace Cloo
         Gpu = 1 << 2,
         /// <summary> </summary>
         Accelerator = 1 << 3,
+        /// <summary> </summary>
+        Custom = 1 << 4,
         /// <summary> </summary>
         All = 0xFFFFFFFF
     }
@@ -300,6 +334,8 @@ namespace Cloo
         /// <summary> </summary>
         CommandQueueProperties = 0x102A,
         /// <summary> </summary>
+        CommandQueueOnHostProperties = 0x102A,
+        /// <summary> </summary>
         Name = 0x102B,
         /// <summary> </summary>
         Vendor = 0x102C,
@@ -338,6 +374,64 @@ namespace Cloo
         /// <summary> </summary>
         OpenCLCVersion = 0x103D,
         /// <summary> </summary>
+        LinkerAvailable = 0x103E,
+        /// <summary> </summary>
+        BuiltInKernels = 0x103F,
+        /// <summary> </summary>
+        ImageMaxBufferSize = 0x1040,
+        /// <summary> </summary>
+        ImageMaxArraySize = 0x1041,
+        /// <summary> </summary>
+        ParentDevice = 0x1042,
+        /// <summary> </summary>
+        PartitionMaxSubDevices = 0x1043,
+        /// <summary> </summary>
+        PartitionProperties = 0x1044,
+        /// <summary> </summary>
+        PartitionAffinityDomain = 0x1045,
+        /// <summary> </summary>
+        PartitionType = 0x1046,
+        /// <summary> </summary>
+        ReferenceCount = 0x1047,
+        /// <summary> </summary>
+        PreferredInteropUserSync = 0x1048,
+        /// <summary> </summary>
+        PrintfBufferSize = 0x1049,
+        /// <summary> </summary>
+        ImagePitchAlignment = 0x104A,
+        /// <summary> </summary>
+        ImageBaseAddressAlignment = 0x104B,
+        /// <summary> </summary>
+        MaxReadWriteImageArgs = 0x104c,
+        /// <summary> </summary>
+        DeviceMaxGlobalVariableSize = 0x104d,
+        /// <summary> </summary>
+        QueueOnDeviceProperties = 0x104e,
+        /// <summary> </summary>
+        QueueOnDevicePreferredSize = 0x104f,
+        /// <summary> </summary>
+        QueueOnDeviceMaxSize = 0x1050,
+        /// <summary> </summary>
+        MaxOnDeviceQueues = 0x1051,
+        /// <summary> </summary>
+        MaxOnDeviceEvents = 0x1052,
+        /// <summary> </summary>
+        SvmCapabilities = 0x1053,
+        /// <summary> </summary>
+        DeviceGlobalVariablePreferredTotalSize = 0x1054,
+        /// <summary> </summary>
+        MaxPipeArgs = 0x1055,
+        /// <summary> </summary>
+        PipeMaxActiveReservations = 0x1056,
+        /// <summary> </summary>
+        PipeMaxPacketSize = 0x1057,
+        /// <summary> </summary>
+        PreferredPlatformAtomicAlignment = 0x1058,
+        /// <summary> </summary>
+        PreferredGlobalAtomicAlignment = 0x1059,
+        /// <summary> </summary>
+        Preferred_localAtomicAlignment = 0x105a,
+        /// <summary> </summary>
         CL_DEVICE_PARENT_DEVICE_EXT = 0x4054,
         /// <summary> </summary>
         CL_DEVICE_PARITION_TYPES_EXT = 0x4055,
@@ -368,7 +462,9 @@ namespace Cloo
         /// <summary> </summary>
         Fma = 1 << 5,
         /// <summary> </summary>
-        SoftFloat = 1 << 6
+        SoftFloat = 1 << 6,
+        /// <summary> </summary>
+        CorrectlyRoundedDivideSqrt = 1 << 7,
     }
 
     /// <summary>
@@ -417,7 +513,11 @@ namespace Cloo
         /// <summary> </summary>
         OutOfOrderExecution = 1 << 0,
         /// <summary> </summary>
-        Profiling = 1 << 1
+        Profiling = 1 << 1,
+        /// <summary> </summary>
+        OnDevice = 1 << 2,
+        /// <summary> </summary>
+        OnDeviceDefault = 1 << 3,
     }
 
     /// <summary>
@@ -435,6 +535,57 @@ namespace Cloo
         NumDevices = 0x1083,
         /// <summary> </summary>
         Platform = 0x1084,
+        /// <summary> </summary>
+        InteropUserSync = 0x1085,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeDevicePartitionProperty : int
+    {
+        /// <summary> </summary>
+        Equally = 0x1086,
+        /// <summary> </summary>
+        ByCounts = 0x1087,
+        /// <summary> </summary>
+        ByCountsListEnd = 0x0,
+        /// <summary> </summary>
+        AffinityDomain = 0x1088,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeDeviceAffinityDomain : int
+    {
+        /// <summary> </summary>
+        Numa = (1 << 0),
+        /// <summary> </summary>
+        L4Cache = (1 << 1),
+        /// <summary> </summary>
+        L3Cache = (1 << 2),
+        /// <summary> </summary>
+        L2Cache = (1 << 3),
+        /// <summary> </summary>
+        L1Cache = (1 << 4),
+        /// <summary> </summary>
+        NextPartitionAble = (1 << 5),
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeDeviceSvmCapabilities : int
+    {
+        /// <summary> </summary>
+        CoarseGrainBuffer = (1 << 0),
+        /// <summary> </summary>
+        FineGrainBuffer = (1 << 1),
+        /// <summary> </summary>
+        FineGrainSystem = (1 << 2),
+        /// <summary> </summary>
+        Atomics = (1 << 3),
     }
 
     /// <summary>
@@ -468,7 +619,9 @@ namespace Cloo
         /// <summary> </summary>
         ReferenceCount = 0x1092,
         /// <summary> </summary>
-        Properties = 0x1093
+        Properties = 0x1093,
+        /// <summary> </summary>
+        Size = 0x1094,
     }
 
     /// <summary>
@@ -490,7 +643,19 @@ namespace Cloo
         /// <summary> </summary>
         AllocateHostPointer = 1 << 4,
         /// <summary> </summary>
-        CopyHostPointer = 1 << 5
+        CopyHostPointer = 1 << 5,
+        /// <summary> </summary>
+        HostWriteOnly = 1 << 7,
+        /// <summary> </summary>
+        HostReadOnly = 1 << 8,
+        /// <summary> </summary>
+        HostNoAccess = 1 << 9,
+        /// <summary> </summary>
+        SvmFineGrainBuffer = 1 << 10,
+        /// <summary> </summary>
+        SvmAtomics = 1 << 11,
+        /// <summary> </summary>
+        KernelReadAndWrite = 1 << 12,
     }
 
     /// <summary>
@@ -523,7 +688,21 @@ namespace Cloo
         /// <summary> </summary>
         Rgx = 0x10BB,
         /// <summary> </summary>
-        Rgbx = 0x10BC
+        Rgbx = 0x10BC,
+        /// <summary> </summary>
+        Depth = 0x10BD,
+        /// <summary> </summary>
+        DepthStencil = 0x10BE,
+        /// <summary> </summary>
+        sRgb = 0x10BF,
+        /// <summary> </summary>
+        sRgbx = 0x10C0,
+        /// <summary> </summary>
+        sRgba = 0x10C1,
+        /// <summary> </summary>
+        sBbra = 0x10C2,
+        /// <summary> </summary>
+        Abgr = 0x10C3,
     }
 
     /// <summary>
@@ -561,6 +740,8 @@ namespace Cloo
         HalfFloat = 0x10DD,
         /// <summary> </summary>
         Float = 0x10DE,
+        /// <summary> </summary>
+        UNormInt24 = 0x10DF,
     }
 
     /// <summary>
@@ -573,7 +754,17 @@ namespace Cloo
         /// <summary> </summary>
         Image2D = 0x10F1,
         /// <summary> </summary>
-        Image3D = 0x10F2
+        Image3D = 0x10F2,
+        /// <summary> </summary>
+        Image2DArray = 0x10F3,
+        /// <summary> </summary>
+        Image1D = 0x10F4,
+        /// <summary> </summary>
+        Image1DArray = 0x10F5,
+        /// <summary> </summary>
+        Image1DBuffer = 0x10F6,
+        /// <summary> </summary>
+        ObjectPipe = 0x10F7,
     }
 
     /// <summary>
@@ -598,7 +789,20 @@ namespace Cloo
         /// <summary> </summary>
         AssociatedMemoryObject = 0x1107,
         /// <summary> </summary>
-        Offset = 0x1108
+        Offset = 0x1108,
+        /// <summary> </summary>
+        UsesSvmPointer = 0x1109,
+    }
+
+    /// <summary>
+    /// The memory migration flags.
+    /// </summary>
+    public enum ComputeMemoryMigrationFlags : int
+    {
+        /// <summary> </summary>
+        ObjectHost = (1 << 0),
+        /// <summary> </summary>
+        ObjectContentUndefined = (1 << 1),
     }
 
     /// <summary>
@@ -619,7 +823,26 @@ namespace Cloo
         /// <summary> </summary>
         Height = 0x1115,
         /// <summary> </summary>
-        Depth = 0x1116
+        Depth = 0x1116,
+        /// <summary> </summary>
+        ArraySize = 0x1117,
+        /// <summary> </summary>
+        Buffer = 0x1118,
+        /// <summary> </summary>
+        NumMipLevels = 0x1119,
+        /// <summary> </summary>
+        NumSamples = 0x111A,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputePipeInfo : int
+    {
+        /// <summary> </summary>
+        PacketSize = 0x1120,
+        /// <summary> </summary>
+        MaxPackets = 0x1121,
     }
 
     /// <summary>
@@ -664,7 +887,13 @@ namespace Cloo
         /// <summary> </summary>
         Addressing = 0x1153,
         /// <summary> </summary>
-        Filtering = 0x1154
+        Filtering = 0x1154,
+        /// <summary> </summary>
+        MipFilterMode = 0x1155,
+        /// <summary> </summary>
+        LodMin = 0x1156,
+        /// <summary> </summary>
+        LodMax = 0x1157,
     }
 
     /// <summary>
@@ -676,7 +905,9 @@ namespace Cloo
         /// <summary> </summary>
         Read = 1 << 0,
         /// <summary> </summary>
-        Write = 1 << 1
+        Write = 1 << 1,
+        /// <summary> </summary>
+        WriteInvalidateRegion = 1 << 2,
     }
 
     /// <summary>
@@ -697,7 +928,11 @@ namespace Cloo
         /// <summary> </summary>
         BinarySizes = 0x1165,
         /// <summary> </summary>
-        Binaries = 0x1166
+        Binaries = 0x1166,
+        /// <summary> </summary>
+        NumKernels = 0x1167,
+        /// <summary> </summary>
+        KernelNames = 0x1168,
     }
 
     /// <summary>
@@ -710,7 +945,26 @@ namespace Cloo
         /// <summary> </summary>
         Options = 0x1182,
         /// <summary> </summary>
-        BuildLog = 0x1183
+        BuildLog = 0x1183,
+        /// <summary> </summary>
+        BinaryType = 0x1184,
+        /// <summary> </summary>
+        BuildGlobalVariableTotalSize = 0x1185,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeProgramBinaryType : int
+    {
+        /// <summary> </summary>
+        None = 0x0,
+        /// <summary> </summary>
+        CompiledObject = 0x1,
+        /// <summary> </summary>
+        Library = 0x2,
+        /// <summary> </summary>
+        Executable = 0x4,
     }
 
     /// <summary>
@@ -742,7 +996,73 @@ namespace Cloo
         /// <summary> </summary>
         Context = 0x1193,
         /// <summary> </summary>
-        Program = 0x1194
+        Program = 0x1194,
+        /// <summary> </summary>
+        Attributes = 0x1195
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeKernelArgInfo : int
+    {
+        /// <summary> </summary>
+        AddressQualifier = 0x1196,
+        /// <summary> </summary>
+        AccessQualifier = 0x1197,
+        /// <summary> </summary>
+        TypeName = 0x1198,
+        /// <summary> </summary>
+        TypeQualifier = 0x1199,
+        /// <summary> </summary>
+        Name = 0x119A,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeKernelArgAddressQualifier : int
+    {
+        /// <summary> </summary>
+        Global = 0x119B,
+        /// <summary> </summary>
+        Local = 0x119C,
+        /// <summary> </summary>
+        Constant = 0x119D,
+        /// <summary> </summary>
+        Private = 0x119E,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeKernelArgAcessQualifier : int
+    {
+        /// <summary> </summary>
+        ReadOnly = 0x11A0,
+        /// <summary> </summary>
+        WriteOnly = 0x11A1,
+        /// <summary> </summary>
+        ReadWrite = 0x11A2,
+        /// <summary> </summary>
+        None = 0x11A3,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeKernelArgTypeQualifier : int
+    {
+        /// <summary> </summary>
+        None = 0,
+        /// <summary> </summary>
+        Const = (1 << 0),
+        /// <summary> </summary>
+        Restrict = (1 << 1),
+        /// <summary> </summary>
+        Volatile = (1 << 2),
+        /// <summary> </summary>
+        Pipe = (1 << 3),
     }
 
     /// <summary>
@@ -759,7 +1079,20 @@ namespace Cloo
         /// <summary> </summary>
         PreferredWorkGroupSizeMultiple = 0x11B3,
         /// <summary> </summary>
-        PrivateMemorySize = 0x11B4
+        PrivateMemorySize = 0x11B4,
+        /// <summary> </summary>
+        GlobalWorkSize = 0x11B5,
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ComputeExecInfo : int
+    {
+        /// <summary> </summary>
+        SvmPtrs = 0x11B6,
+        /// <summary> </summary>
+        SvmFineGrainSystem = 0x11B7,
     }
 
     /// <summary>
@@ -827,6 +1160,24 @@ namespace Cloo
         /// <summary> </summary>
         User = 0x1204,
         /// <summary> </summary>
+        Barrier = 0x1205,
+        /// <summary> </summary>
+        MigrateMemoryObjects = 0x1206,
+        /// <summary> </summary>
+        FillBuffer = 0x1207,
+        /// <summary> </summary>
+        FillImage = 0x1208,
+        /// <summary> </summary>
+        SvmFree = 0x1209,
+        /// <summary> </summary>
+        SvmMemCpy = 0x120A,
+        /// <summary> </summary>
+        SvmMemFill = 0x120B,
+        /// <summary> </summary>
+        SvmMap = 0x120C,
+        /// <summary> </summary>
+        SvmUnmap = 0x120D,
+        /// <summary> </summary>
         CL_COMMAND_MIGRATE_MEM_OBJECT_EXT = 0x4040
     }
 
@@ -866,7 +1217,9 @@ namespace Cloo
         /// <summary> </summary>
         Started = 0x1282,
         /// <summary> </summary>
-        Ended = 0x1283
+        Ended = 0x1283,
+        /// <summary> </summary>
+        Complete = 0x1284,
     }
 
     /**************************************************************************************/

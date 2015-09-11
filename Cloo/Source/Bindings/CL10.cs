@@ -43,282 +43,157 @@ namespace Cloo.Bindings
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetPlatformIDs(
-            Int32 num_entries,
-            [Out, MarshalAs(UnmanagedType.LPArray)] CLPlatformHandle[] platforms,
-            out Int32 num_platforms);
+        ComputeErrorCode GetPlatformIDs(Int32 num_entries, [Out, MarshalAs(UnmanagedType.LPArray)] CLPlatformHandle[] platforms, out Int32 num_platforms);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetPlatformInfo(
-            CLPlatformHandle platform,
-            ComputePlatformInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetPlatformInfo(CLPlatformHandle platform, ComputePlatformInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetDeviceIDs(
-            CLPlatformHandle platform,
-            ComputeDeviceTypes device_type,
-            Int32 num_entries,
-            [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices,
-            out Int32 num_devices);
+        ComputeErrorCode GetDeviceIDs(CLPlatformHandle platform, ComputeDeviceTypes device_type, Int32 num_entries, [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, out Int32 num_devices);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetDeviceInfo(
-            CLDeviceHandle device,
-            ComputeDeviceInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetDeviceInfo(CLDeviceHandle device, ComputeDeviceInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLContextHandle CreateContext(
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties,
-            Int32 num_devices,
-            [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices,
-            ComputeContextNotifier pfn_notify,
-            IntPtr user_data,
-            out ComputeErrorCode errcode_ret);
+        CLContextHandle CreateContext([MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, Int32 num_devices, [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, ComputeContextNotifier pfn_notify, IntPtr user_data, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLContextHandle CreateContextFromType(
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties,
-            ComputeDeviceTypes device_type,
-            ComputeContextNotifier pfn_notify,
-            IntPtr user_data,
-            out ComputeErrorCode errcode_ret);
+        CLContextHandle CreateContextFromType([MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, ComputeDeviceTypes device_type, ComputeContextNotifier pfn_notify, IntPtr user_data, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainContext(
-            CLContextHandle context);
+        ComputeErrorCode RetainContext(CLContextHandle context);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode ReleaseContext(
-            CLContextHandle context);
+        ComputeErrorCode ReleaseContext(CLContextHandle context);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetContextInfo(
-            CLContextHandle context,
-            ComputeContextInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetContextInfo(CLContextHandle context, ComputeContextInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLCommandQueueHandle CreateCommandQueue(
-            CLContextHandle context,
-            CLDeviceHandle device,
-            ComputeCommandQueueFlags properties,
-            out ComputeErrorCode errcode_ret);
+        CLCommandQueueHandle CreateCommandQueue(CLContextHandle context, CLDeviceHandle device, ComputeCommandQueueFlags properties, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainCommandQueue(
-            CLCommandQueueHandle command_queue);
+        ComputeErrorCode RetainCommandQueue(CLCommandQueueHandle command_queue);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode
-        ReleaseCommandQueue(
-            CLCommandQueueHandle command_queue);
+        ComputeErrorCode ReleaseCommandQueue(CLCommandQueueHandle command_queue);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetCommandQueueInfo(
-            CLCommandQueueHandle command_queue,
-            ComputeCommandQueueInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetCommandQueueInfo(CLCommandQueueHandle command_queue, ComputeCommandQueueInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode SetCommandQueueProperty(
-            CLCommandQueueHandle command_queue,
-            ComputeCommandQueueFlags properties,
-            [MarshalAs(UnmanagedType.Bool)] bool enable,
-            out ComputeCommandQueueFlags old_properties);
+        ComputeErrorCode SetCommandQueueProperty(CLCommandQueueHandle command_queue, ComputeCommandQueueFlags properties, [MarshalAs(UnmanagedType.Bool)] bool enable, out ComputeCommandQueueFlags old_properties);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateBuffer(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            IntPtr size,
-            IntPtr host_ptr,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateBuffer(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, IntPtr host_ptr, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateImage2D(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            ref ComputeImageFormat image_format,
-            IntPtr image_width,
-            IntPtr image_height,
-            IntPtr image_row_pitch,
-            IntPtr host_ptr,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateImage2D(CLContextHandle context, ComputeMemoryFlags flags, ref ComputeImageFormat image_format, IntPtr image_width, IntPtr image_height, IntPtr image_row_pitch, IntPtr host_ptr, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateImage3D(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            ref ComputeImageFormat image_format,
-            IntPtr image_width,
-            IntPtr image_height,
-            IntPtr image_depth,
-            IntPtr image_row_pitch,
-            IntPtr image_slice_pitch,
-            IntPtr host_ptr,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateImage3D(CLContextHandle context, ComputeMemoryFlags flags, ref ComputeImageFormat image_format, IntPtr image_width, IntPtr image_height, IntPtr image_depth, IntPtr image_row_pitch, IntPtr image_slice_pitch, IntPtr host_ptr, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainMemObject(
-            CLMemoryHandle memobj);
+        ComputeErrorCode RetainMemObject(CLMemoryHandle memobj);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode ReleaseMemObject(
-            CLMemoryHandle memobj);
+        ComputeErrorCode ReleaseMemObject(CLMemoryHandle memobj);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetSupportedImageFormats(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            ComputeMemoryType image_type,
-            Int32 num_entries,
-            [Out, MarshalAs(UnmanagedType.LPArray)] ComputeImageFormat[] image_formats,
-            out Int32 num_image_formats);
+        ComputeErrorCode GetSupportedImageFormats(CLContextHandle context, ComputeMemoryFlags flags, ComputeMemoryType image_type, Int32 num_entries, [Out, MarshalAs(UnmanagedType.LPArray)] ComputeImageFormat[] image_formats, out Int32 num_image_formats);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetMemObjectInfo(
-            CLMemoryHandle memobj,
-            ComputeMemoryInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetMemObjectInfo(CLMemoryHandle memobj, ComputeMemoryInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetImageInfo(
-            CLMemoryHandle image,
-            ComputeImageInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetImageInfo(CLMemoryHandle image, ComputeImageInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLSamplerHandle CreateSampler(
-            CLContextHandle context,
-            [MarshalAs(UnmanagedType.Bool)] bool normalized_coords,
-            ComputeImageAddressing addressing_mode,
-            ComputeImageFiltering filter_mode,
-            out ComputeErrorCode errcode_ret);
+        CLSamplerHandle CreateSampler(CLContextHandle context, [MarshalAs(UnmanagedType.Bool)] bool normalized_coords, ComputeImageAddressing addressing_mode, ComputeImageFiltering filter_mode, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainSampler(
-            CLSamplerHandle sample);
+        ComputeErrorCode RetainSampler(CLSamplerHandle sample);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode ReleaseSampler(
-            CLSamplerHandle sample);
+        ComputeErrorCode ReleaseSampler(CLSamplerHandle sample);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetSamplerInfo(
-            CLSamplerHandle sample,
-            ComputeSamplerInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetSamplerInfo(CLSamplerHandle sample, ComputeSamplerInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLProgramHandle CreateProgramWithSource(
-            CLContextHandle context,
-            Int32 count,
-            String[] strings,
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lengths,
-            out ComputeErrorCode errcode_ret);
+        CLProgramHandle CreateProgramWithSource(CLContextHandle context, Int32 count, String[] strings, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lengths, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLProgramHandle CreateProgramWithBinary(
-            CLContextHandle context,
-            Int32 num_devices,
-            [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list,
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lengths,
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] binaries,
-            [MarshalAs(UnmanagedType.LPArray)] Int32[] binary_status,
-            out ComputeErrorCode errcode_ret);
+        CLProgramHandle CreateProgramWithBinary(CLContextHandle context, Int32 num_devices, [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lengths, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] binaries, [MarshalAs(UnmanagedType.LPArray)] Int32[] binary_status, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainProgram(
-            CLProgramHandle program);
+        ComputeErrorCode RetainProgram(CLProgramHandle program);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode ReleaseProgram(
-            CLProgramHandle program);
+        ComputeErrorCode ReleaseProgram(CLProgramHandle program);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode BuildProgram(
-            CLProgramHandle program,
-            Int32 num_devices,
-            [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list,
-            String options,
-            ComputeProgramBuildNotifier pfn_notify,
-            IntPtr user_data);
+        ComputeErrorCode BuildProgram(CLProgramHandle program, Int32 num_devices, [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list, String options, ComputeProgramBuildNotifier pfn_notify, IntPtr user_data);
 
         /// <summary>
         /// See the OpenCL specification.
@@ -328,364 +203,169 @@ namespace Cloo.Bindings
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetProgramInfo(
-            CLProgramHandle program,
-            ComputeProgramInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetProgramInfo(CLProgramHandle program, ComputeProgramInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetProgramBuildInfo(
-            CLProgramHandle program,
-            CLDeviceHandle device,
-            ComputeProgramBuildInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetProgramBuildInfo(CLProgramHandle program, CLDeviceHandle device, ComputeProgramBuildInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLKernelHandle CreateKernel(
-            CLProgramHandle program,
-            String kernel_name,
-            out ComputeErrorCode errcode_ret);
+        CLKernelHandle CreateKernel(CLProgramHandle program, String kernel_name, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode CreateKernelsInProgram(
-            CLProgramHandle program,
-            Int32 num_kernels,
-            [Out, MarshalAs(UnmanagedType.LPArray)] CLKernelHandle[] kernels,
-            out Int32 num_kernels_ret);
+        ComputeErrorCode CreateKernelsInProgram(CLProgramHandle program, Int32 num_kernels, [Out, MarshalAs(UnmanagedType.LPArray)] CLKernelHandle[] kernels, out Int32 num_kernels_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainKernel(
-            CLKernelHandle kernel);
+        ComputeErrorCode RetainKernel(CLKernelHandle kernel);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode ReleaseKernel(
-            CLKernelHandle kernel);
+        ComputeErrorCode ReleaseKernel(CLKernelHandle kernel);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode SetKernelArg(
-            CLKernelHandle kernel,
-            Int32 arg_index,
-            IntPtr arg_size,
-            IntPtr arg_value);
+        ComputeErrorCode SetKernelArg(CLKernelHandle kernel, Int32 arg_index, IntPtr arg_size, IntPtr arg_value);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetKernelInfo(
-            CLKernelHandle kernel,
-            ComputeKernelInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetKernelInfo(CLKernelHandle kernel, ComputeKernelInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetKernelWorkGroupInfo(
-            CLKernelHandle kernel,
-            CLDeviceHandle device,
-            ComputeKernelWorkGroupInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetKernelWorkGroupInfo(CLKernelHandle kernel, CLDeviceHandle device, ComputeKernelWorkGroupInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode WaitForEvents(
-            Int32 num_events,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_list);
+        ComputeErrorCode WaitForEvents(Int32 num_events, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_list);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetEventInfo(
-            CLEventHandle @event,
-            ComputeEventInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetEventInfo(CLEventHandle @event, ComputeEventInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode RetainEvent(
-            CLEventHandle @event);
+        ComputeErrorCode RetainEvent(CLEventHandle @event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode ReleaseEvent(
-            CLEventHandle @event);
+        ComputeErrorCode ReleaseEvent(CLEventHandle @event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetEventProfilingInfo(
-            CLEventHandle @event,
-            ComputeCommandProfilingInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetEventProfilingInfo(CLEventHandle @event, ComputeCommandProfilingInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode Flush(
-            CLCommandQueueHandle command_queue);
+        ComputeErrorCode Flush(CLCommandQueueHandle command_queue);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode Finish(
-            CLCommandQueueHandle command_queue);
+        ComputeErrorCode Finish(CLCommandQueueHandle command_queue);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueReadBuffer(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle buffer,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_read,
-            IntPtr offset,
-            IntPtr cb,
-            IntPtr ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueReadBuffer(CLCommandQueueHandle command_queue, CLMemoryHandle buffer, [MarshalAs(UnmanagedType.Bool)] bool blocking_read, IntPtr offset, IntPtr cb, IntPtr ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueWriteBuffer(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle buffer,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_write,
-            IntPtr offset,
-            IntPtr cb,
-            IntPtr ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueWriteBuffer(CLCommandQueueHandle command_queue, CLMemoryHandle buffer, [MarshalAs(UnmanagedType.Bool)] bool blocking_write, IntPtr offset, IntPtr cb, IntPtr ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueCopyBuffer(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle src_buffer,
-            CLMemoryHandle dst_buffer,
-            IntPtr src_offset,
-            IntPtr dst_offset,
-            IntPtr cb,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueCopyBuffer(CLCommandQueueHandle command_queue, CLMemoryHandle src_buffer, CLMemoryHandle dst_buffer, IntPtr src_offset, IntPtr dst_offset, IntPtr cb, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueReadImage(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle image,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_read,
-            ref SysIntX3 origin,
-            ref SysIntX3 region,
-            IntPtr row_pitch,
-            IntPtr slice_pitch,
-            IntPtr ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueReadImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, [MarshalAs(UnmanagedType.Bool)] bool blocking_read, ref SysIntX3 origin, ref SysIntX3 region, IntPtr row_pitch, IntPtr slice_pitch, IntPtr ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueWriteImage(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle image,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_write,
-            ref SysIntX3 origin,
-            ref SysIntX3 region,
-            IntPtr input_row_pitch,
-            IntPtr input_slice_pitch,
-            IntPtr ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueWriteImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, [MarshalAs(UnmanagedType.Bool)] bool blocking_write, ref SysIntX3 origin, ref SysIntX3 region, IntPtr input_row_pitch, IntPtr input_slice_pitch, IntPtr ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueCopyImage(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle src_image,
-            CLMemoryHandle dst_image,
-            ref SysIntX3 src_origin,
-            ref SysIntX3 dst_origin,
-            ref SysIntX3 region,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueCopyImage(CLCommandQueueHandle command_queue, CLMemoryHandle src_image, CLMemoryHandle dst_image, ref SysIntX3 src_origin, ref SysIntX3 dst_origin, ref SysIntX3 region, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueCopyImageToBuffer(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle src_image,
-            CLMemoryHandle dst_buffer,
-            ref SysIntX3 src_origin,
-            ref SysIntX3 region,
-            IntPtr dst_offset,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueCopyImageToBuffer(CLCommandQueueHandle command_queue, CLMemoryHandle src_image, CLMemoryHandle dst_buffer, ref SysIntX3 src_origin, ref SysIntX3 region, IntPtr dst_offset, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueCopyBufferToImage(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle src_buffer,
-            CLMemoryHandle dst_image,
-            IntPtr src_offset,
-            ref SysIntX3 dst_origin,
-            ref SysIntX3 region,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueCopyBufferToImage(CLCommandQueueHandle command_queue, CLMemoryHandle src_buffer, CLMemoryHandle dst_image, IntPtr src_offset, ref SysIntX3 dst_origin, ref SysIntX3 region, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        IntPtr EnqueueMapBuffer(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle buffer,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_map,
-            ComputeMemoryMappingFlags map_flags,
-            IntPtr offset,
-            IntPtr cb,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst = 1)] CLEventHandle[] new_event,
-            out ComputeErrorCode errcode_ret);
+        IntPtr EnqueueMapBuffer(CLCommandQueueHandle command_queue, CLMemoryHandle buffer, [MarshalAs(UnmanagedType.Bool)] bool blocking_map, ComputeMemoryMappingFlags map_flags, IntPtr offset, IntPtr cb, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        IntPtr EnqueueMapImage(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle image,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_map,
-            ComputeMemoryMappingFlags map_flags,
-            ref SysIntX3 origin,
-            ref SysIntX3 region,
-            out IntPtr image_row_pitch,
-            out IntPtr image_slice_pitch,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst = 1)] CLEventHandle[] new_event,
-            out ComputeErrorCode errcode_ret);
+        IntPtr EnqueueMapImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, [MarshalAs(UnmanagedType.Bool)] bool blocking_map, ComputeMemoryMappingFlags map_flags, ref SysIntX3 origin, ref SysIntX3 region, out IntPtr image_row_pitch, out IntPtr image_slice_pitch, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueUnmapMemObject(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle memobj,
-            IntPtr mapped_ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueUnmapMemObject(CLCommandQueueHandle command_queue, CLMemoryHandle memobj, IntPtr mapped_ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueNDRangeKernel(
-            CLCommandQueueHandle command_queue,
-            CLKernelHandle kernel,
-            Int32 work_dim,
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] global_work_offset,
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] global_work_size,
-            [MarshalAs(UnmanagedType.LPArray)] IntPtr[] local_work_size,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueNDRangeKernel(CLCommandQueueHandle command_queue, CLKernelHandle kernel, Int32 work_dim, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] global_work_offset, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] global_work_size, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] local_work_size, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueTask(
-            CLCommandQueueHandle command_queue,
-            CLKernelHandle kernel,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
-
-        // <summary>
-        // See the OpenCL specification.
-        // </summary>
-        /*
-        ComputeErrorCode EnqueueNativeKernel(
-            CLCommandQueueHandle command_queue,
-            IntPtr user_func,
-            IntPtr args,
-            IntPtr cb_args,
-            Int32 num_mem_objects,
-            IntPtr* mem_list,
-            IntPtr* args_mem_loc,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
-        */
+        ComputeErrorCode EnqueueTask(CLCommandQueueHandle command_queue, CLKernelHandle kernel, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueMarker(
-            CLCommandQueueHandle command_queue,
-            out CLEventHandle new_event);
+        ComputeErrorCode EnqueueMarker(CLCommandQueueHandle command_queue, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueWaitForEvents(
-            CLCommandQueueHandle command_queue,
-            Int32 num_events,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_list);
+        ComputeErrorCode EnqueueWaitForEvents(CLCommandQueueHandle command_queue, Int32 num_events, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_list);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueBarrier(
-            CLCommandQueueHandle command_queue);
+        ComputeErrorCode EnqueueBarrier(CLCommandQueueHandle command_queue);
 
-        
         /// <summary>
-        /// Gets the extension function address for the given function name,
-        /// or NULL if a valid function can not be found. The client must
+        /// Gets the extension function address for the given function name,        /// or NULL if a valid function can not be found. The client must
         /// check to make sure the address is not NULL, before using or 
         /// calling the returned function address.
         /// </summary>
-        IntPtr GetExtensionFunctionAddress(
-            String func_name);
+        IntPtr GetExtensionFunctionAddress(String func_name);
 
         /**************************************************************************************/
         // CL/GL Sharing API
@@ -693,82 +373,42 @@ namespace Cloo.Bindings
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateFromGLBuffer(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            Int32 bufobj,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateFromGLBuffer(CLContextHandle context, ComputeMemoryFlags flags, Int32 bufobj, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateFromGLTexture2D(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            Int32 target,
-            Int32 miplevel,
-            Int32 texture,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateFromGLTexture2D(CLContextHandle context, ComputeMemoryFlags flags, Int32 target, Int32 miplevel, Int32 texture, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateFromGLTexture3D(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            Int32 target,
-            Int32 miplevel,
-            Int32 texture,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateFromGLTexture3D(CLContextHandle context, ComputeMemoryFlags flags, Int32 target, Int32 miplevel, Int32 texture, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateFromGLRenderbuffer(
-            CLContextHandle context,
-            ComputeMemoryFlags flags,
-            Int32 renderbuffer,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateFromGLRenderbuffer(CLContextHandle context, ComputeMemoryFlags flags, Int32 renderbuffer, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetGLObjectInfo(
-            CLMemoryHandle memobj,
-            out ComputeGLObjectType gl_object_type,
-            out Int32 gl_object_name);
+        ComputeErrorCode GetGLObjectInfo(CLMemoryHandle memobj, out ComputeGLObjectType gl_object_type, out Int32 gl_object_name);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetGLTextureInfo(
-            CLMemoryHandle memobj,
-            ComputeGLTextureInfo param_name,
-            IntPtr param_value_size,
-            IntPtr param_value,
-            out IntPtr param_value_size_ret);
+        ComputeErrorCode GetGLTextureInfo(CLMemoryHandle memobj, ComputeGLTextureInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueAcquireGLObjects(
-            CLCommandQueueHandle command_queue,
-            Int32 num_objects,
-            [MarshalAs(UnmanagedType.LPArray)] CLMemoryHandle[] mem_objects,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueAcquireGLObjects(CLCommandQueueHandle command_queue, Int32 num_objects, [MarshalAs(UnmanagedType.LPArray)] CLMemoryHandle[] mem_objects, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueReleaseGLObjects(
-            CLCommandQueueHandle command_queue,
-            Int32 num_objects,
-            [MarshalAs(UnmanagedType.LPArray)] CLMemoryHandle[] mem_objects,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueReleaseGLObjects(CLCommandQueueHandle command_queue, Int32 num_objects, [MarshalAs(UnmanagedType.LPArray)] CLMemoryHandle[] mem_objects, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
     }
 
     /// <summary>

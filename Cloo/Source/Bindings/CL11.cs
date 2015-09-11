@@ -44,111 +44,57 @@ namespace Cloo.Bindings
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLMemoryHandle CreateSubBuffer(
-            CLMemoryHandle buffer,
-            ComputeMemoryFlags flags,
-            ComputeBufferCreateType buffer_create_type,
-            ref SysIntX2 buffer_create_info,
-            out ComputeErrorCode errcode_ret);
+        CLMemoryHandle CreateSubBuffer(CLMemoryHandle buffer, ComputeMemoryFlags flags, ComputeBufferCreateType buffer_create_type, ref SysIntX2 buffer_create_info, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode SetMemObjectDestructorCallback( 
-            CLMemoryHandle memobj, 
-            ComputeMemoryDestructorNotifer pfn_notify, 
-            IntPtr user_data);
+        ComputeErrorCode SetMemObjectDestructorCallback(CLMemoryHandle memobj, ComputeMemoryDestructorNotifer pfn_notify, IntPtr user_data);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        CLEventHandle CreateUserEvent(
-            CLContextHandle context,
-            out ComputeErrorCode errcode_ret);
+        CLEventHandle CreateUserEvent(CLContextHandle context, out ComputeErrorCode errcode_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode SetUserEventStatus(
-            CLEventHandle @event,
-            Int32 execution_status);
+        ComputeErrorCode SetUserEventStatus(CLEventHandle @event, Int32 execution_status);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode SetEventCallback(
-            CLEventHandle @event,
-            Int32 command_exec_callback_type,
-            ComputeEventCallback pfn_notify,
-            IntPtr user_data);
+        ComputeErrorCode SetEventCallback(CLEventHandle @event, Int32 command_exec_callback_type, ComputeEventCallback pfn_notify, IntPtr user_data);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueReadBufferRect(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle buffer,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_read,
-            ref SysIntX3 buffer_offset,
-            ref SysIntX3 host_offset,
-            ref SysIntX3 region,
-            IntPtr buffer_row_pitch,
-            IntPtr buffer_slice_pitch,
-            IntPtr host_row_pitch,
-            IntPtr host_slice_pitch,
-            IntPtr ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueReadBufferRect(CLCommandQueueHandle command_queue, CLMemoryHandle buffer, [MarshalAs(UnmanagedType.Bool)] bool blocking_read, ref SysIntX3 buffer_offset, ref SysIntX3 host_offset, ref SysIntX3 region, IntPtr buffer_row_pitch, IntPtr buffer_slice_pitch, IntPtr host_row_pitch, IntPtr host_slice_pitch, IntPtr ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueWriteBufferRect(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle buffer,
-            [MarshalAs(UnmanagedType.Bool)] bool blocking_write,
-            ref SysIntX3 buffer_offset,
-            ref SysIntX3 host_offset,
-            ref SysIntX3 region,
-            IntPtr buffer_row_pitch,
-            IntPtr buffer_slice_pitch,
-            IntPtr host_row_pitch,
-            IntPtr host_slice_pitch,
-            IntPtr ptr,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueWriteBufferRect(CLCommandQueueHandle command_queue, CLMemoryHandle buffer, [MarshalAs(UnmanagedType.Bool)] bool blocking_write, ref SysIntX3 buffer_offset, ref SysIntX3 host_offset, ref SysIntX3 region, IntPtr buffer_row_pitch, IntPtr buffer_slice_pitch, IntPtr host_row_pitch, IntPtr host_slice_pitch, IntPtr ptr, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode EnqueueCopyBufferRect(
-            CLCommandQueueHandle command_queue,
-            CLMemoryHandle src_buffer,
-            CLMemoryHandle dst_buffer,
-            ref SysIntX3 src_origin,
-            ref SysIntX3 dst_origin,
-            ref SysIntX3 region,
-            IntPtr src_row_pitch,
-            IntPtr src_slice_pitch,
-            IntPtr dst_row_pitch,
-            IntPtr dst_slice_pitch,
-            Int32 num_events_in_wait_list,
-            [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list,
-            [Out, MarshalAs(UnmanagedType.LPArray, SizeConst=1)] CLEventHandle[] new_event);
+        ComputeErrorCode EnqueueCopyBufferRect(CLCommandQueueHandle command_queue, CLMemoryHandle src_buffer, CLMemoryHandle dst_buffer, ref SysIntX3 src_origin, ref SysIntX3 dst_origin, ref SysIntX3 region, IntPtr src_row_pitch, IntPtr src_slice_pitch, IntPtr dst_row_pitch, IntPtr dst_slice_pitch, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
 
         #region Deprecated functions
 
         /// <summary>
-        /// See the OpenCL specification.
+        ///  WARNING:
+        ///     This API introduces mutable state into the OpenCL implementation.It has been REMOVED
+        ///  to better facilitate thread safety.The 1.0 API is not thread safe.It is not tested by the
+        ///  OpenCL 1.1 conformance test, and consequently may not work or may not work dependably.
+        ///  It is likely to be non-performant.Use of this API is not advised.Use at your own risk.
+        ///
+        ///  Software developers previously relying on this API are instructed to set the command queue 
+        ///  properties when creating the queue, instead.
         /// </summary>
         [Obsolete("Deprecated in OpenCL 1.1.")]
-        new ComputeErrorCode SetCommandQueueProperty(
-            CLCommandQueueHandle command_queue,
-            ComputeCommandQueueFlags properties,
-            [MarshalAs(UnmanagedType.Bool)] bool enable,
-            out ComputeCommandQueueFlags old_properties);
+        new ComputeErrorCode SetCommandQueueProperty(CLCommandQueueHandle command_queue, ComputeCommandQueueFlags properties, [MarshalAs(UnmanagedType.Bool)] bool enable, out ComputeCommandQueueFlags old_properties);
 
         #endregion
     }

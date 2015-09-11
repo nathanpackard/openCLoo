@@ -31,24 +31,51 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 namespace Cloo
 {
-    using Cloo.Bindings;
     using System;
+    using System.Diagnostics;
+    using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Represents the OpenCL compiler.
+    /// Represents an OpenCL buffer region.
     /// </summary>
-    public class ComputeCompiler
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ComputeBufferRegion
     {
-        #region Public methods
+        #region Fields
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly IntPtr origin;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly IntPtr size;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
-        /// Unloads the OpenCL compiler.
+        /// 
         /// </summary>
-        [Obsolete("Deprecated in OpenCL 1.2.")]
-        public static void Unload()
+        public long Origin { get { return (long)origin; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Size { get { return (long)size; } }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <param name="size"></param>
+        public ComputeBufferRegion(IntPtr origin, IntPtr size)
         {
-            ComputeErrorCode error = CLInterface.CL11.UnloadCompiler();
-            ComputeException.ThrowOnError(error);
+            this.origin = origin;
+            this.size = size;
         }
 
         #endregion

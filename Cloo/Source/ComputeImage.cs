@@ -44,7 +44,7 @@ namespace Cloo
     /// <remarks> A memory object that stores a two- or three- dimensional structured array. Image data can only be accessed with read and write functions. The read functions use a sampler. </remarks>
     /// <seealso cref="ComputeMemory"/>
     /// <seealso cref="ComputeSampler"/>
-    public abstract class ComputeImage : ComputeMemory
+    public class ComputeImage : ComputeMemory
     {
         #region Properties
 
@@ -84,6 +84,59 @@ namespace Cloo
         /// <value> The width in pixels of the <see cref="ComputeImage"/>. </value>
         public int Width { get; protected set; }
 
+        /// <summary>
+        /// Creates a new <see cref="ComputeImage"/> from an OpenGL texture object.
+        /// </summary>
+        /// <param name="context"> A <see cref="ComputeContext"/> with enabled CL/GL sharing. </param>
+        /// <param name="flags"> A bit-field that is used to specify usage information about the <see cref="ComputeImage2D"/>. Only <c>ComputeMemoryFlags.ReadOnly</c>, <c>ComputeMemoryFlags.WriteOnly</c> and <c>ComputeMemoryFlags.ReadWrite</c> are allowed. </param>
+        /// <param name="textureTarget"> One of the following values: GL_TEXTURE_2D, GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, or GL_TEXTURE_RECTANGLE. Using GL_TEXTURE_RECTANGLE for texture_target requires OpenGL 3.1. Alternatively, GL_TEXTURE_RECTANGLE_ARB may be specified if the OpenGL extension GL_ARB_texture_rectangle is supported. </param>
+        /// <param name="mipLevel"> The mipmap level of the OpenGL 2D texture object to be used. </param>
+        /// <param name="textureId"> The OpenGL 2D texture object id to use. </param>
+        /// <returns> The created <see cref="ComputeImage2D"/>. </returns>
+        public static ComputeImage CreateFromGLTexture(ComputeContext context, ComputeMemoryFlags flags, int textureTarget, int mipLevel, int textureId)
+        {
+            ComputeErrorCode error = ComputeErrorCode.Success;
+            CLMemoryHandle image = CLInterface.CL20.CreateFromGLTexture(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
+            ComputeException.ThrowOnError(error);
+            return new ComputeImage(image, context, flags);
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="ComputeImage2D"/> from an OpenGL renderbuffer object.
+        /// </summary>
+        /// <param name="context"> A <see cref="ComputeContext"/> with enabled CL/GL sharing. </param>
+        /// <param name="flags"> A bit-field that is used to specify usage information about the <see cref="ComputeImage2D"/>. Only <c>ComputeMemoryFlags.ReadOnly</c>, <c>ComputeMemoryFlags.WriteOnly</c> and <c>ComputeMemoryFlags.ReadWrite</c> are allowed. </param>
+        /// <param name="renderbufferId"> The OpenGL renderbuffer object id to use. </param>
+        /// <returns> The created <see cref="ComputeImage2D"/>. </returns>
+        public static ComputeImage CreateFromGLRenderbuffer(ComputeContext context, ComputeMemoryFlags flags, int renderbufferId)
+        {
+            ComputeErrorCode error = ComputeErrorCode.Success;
+            CLMemoryHandle image = CLInterface.CL20.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
+            ComputeException.ThrowOnError(error);
+
+            return new ComputeImage(image, context, flags);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="flags"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static ICollection<ComputeImageFormat> GetSupportedFormats(ComputeContext context, ComputeMemoryFlags flags, ComputeMemoryType type)
+        {
+            int formatCountRet = 0;
+            ComputeErrorCode error = CLInterface.CL20.GetSupportedImageFormats(context.Handle, flags, type, 0, null, out formatCountRet);
+            ComputeException.ThrowOnError(error);
+
+            ComputeImageFormat[] formats = new ComputeImageFormat[formatCountRet];
+            error = CLInterface.CL20.GetSupportedImageFormats(context.Handle, flags, type, formatCountRet, formats, out formatCountRet);
+            ComputeException.ThrowOnError(error);
+
+            return new Collection<ComputeImageFormat>(formats);
+        }
+
         #endregion
 
         #region Constructors
@@ -93,9 +146,35 @@ namespace Cloo
         /// </summary>
         /// <param name="context"></param>
         /// <param name="flags"></param>
-        protected ComputeImage(ComputeContext context, ComputeMemoryFlags flags)
+        public ComputeImage(ComputeContext context, ComputeMemoryFlags flags)
             : base(context, flags)
         { }
+
+        /// <summary>
+        /// Creates a new <see cref="ComputeImage"/>.
+        /// </summary>
+        /// <param name="context"> A valid <see cref="ComputeContext"/> in which the <see cref="ComputeImage"/> is created. </param>
+        /// <param name="flags"> A bit-field that is used to specify allocation and usage information about the <see cref="ComputeImage"/>. </param>
+        /// <param name="format"> A structure that describes the format properties of the <see cref="ComputeImage"/>. </param>
+        /// <param name="imageDescription"> A structure that describes the <see cref="ComputeImage"/>. </param>
+        /// <param name="data"> The data to initialize the <see cref="ComputeImage"/>. Can be <c>IntPtr.Zero</c>. </param>
+        public ComputeImage(ComputeContext context, ComputeMemoryFlags flags, ComputeImageFormat format, ComputeImageDescription imageDescription, IntPtr data)
+            : base(context, flags)
+        {
+            ComputeErrorCode error = ComputeErrorCode.Success;
+            Handle = CLInterface.CL20.CreateImage(context.Handle, flags, ref format, ref imageDescription, data, out error);
+            ComputeException.ThrowOnError(error);
+
+            Init();
+        }
+
+        private ComputeImage(CLMemoryHandle handle, ComputeContext context, ComputeMemoryFlags flags)
+            : base(context, flags)
+        {
+            Handle = handle;
+
+            Init();
+        }
 
         #endregion
 
@@ -104,37 +183,17 @@ namespace Cloo
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="flags"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        protected static ICollection<ComputeImageFormat> GetSupportedFormats(ComputeContext context, ComputeMemoryFlags flags, ComputeMemoryType type)
-        {
-            int formatCountRet = 0;
-            ComputeErrorCode error = CLInterface.CL12.GetSupportedImageFormats(context.Handle, flags, type, 0, null, out formatCountRet);
-            ComputeException.ThrowOnError(error);
-
-            ComputeImageFormat[] formats = new ComputeImageFormat[formatCountRet];
-            error = CLInterface.CL12.GetSupportedImageFormats(context.Handle, flags, type, formatCountRet, formats, out formatCountRet);
-            ComputeException.ThrowOnError(error);
-
-            return new Collection<ComputeImageFormat>(formats);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected void Init()
         {
             SetID(Handle.Value);
 
-            Depth = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Depth, CLInterface.CL12.GetImageInfo);
-            ElementSize = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.ElementSize, CLInterface.CL12.GetImageInfo);
-            Height = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Height, CLInterface.CL12.GetImageInfo);
-            RowPitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.RowPitch, CLInterface.CL12.GetImageInfo);
-            Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL12.GetMemObjectInfo);
-            SlicePitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.SlicePitch, CLInterface.CL12.GetImageInfo);
-            Width = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Width, CLInterface.CL12.GetImageInfo);
+            Depth = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Depth, CLInterface.CL20.GetImageInfo);
+            ElementSize = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.ElementSize, CLInterface.CL20.GetImageInfo);
+            Height = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Height, CLInterface.CL20.GetImageInfo);
+            RowPitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.RowPitch, CLInterface.CL20.GetImageInfo);
+            Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL20.GetMemObjectInfo);
+            SlicePitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.SlicePitch, CLInterface.CL20.GetImageInfo);
+            Width = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Width, CLInterface.CL20.GetImageInfo);
         }
 
         #endregion

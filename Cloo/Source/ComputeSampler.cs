@@ -48,15 +48,6 @@ namespace Cloo
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly ComputeContext context;
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly ComputeImageAddressing addressing;
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly ComputeImageFiltering filtering;
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly bool normalizedCoords;
-
         #endregion
 
         #region Properties
@@ -76,24 +67,6 @@ namespace Cloo
         /// <value> The <see cref="ComputeContext"/> of the <see cref="ComputeSampler"/>. </value>
         public ComputeContext Context { get { return context; } }
 
-        /// <summary>
-        /// Gets the <see cref="ComputeImageAddressing"/> mode of the <see cref="ComputeSampler"/>.
-        /// </summary>
-        /// <value> The <see cref="ComputeImageAddressing"/> mode of the <see cref="ComputeSampler"/>. </value>
-        public ComputeImageAddressing Addressing { get { return addressing; } }
-
-        /// <summary>
-        /// Gets the <see cref="ComputeImageFiltering"/> mode of the <see cref="ComputeSampler"/>.
-        /// </summary>
-        /// <value> The <see cref="ComputeImageFiltering"/> mode of the <see cref="ComputeSampler"/>. </value>
-        public ComputeImageFiltering Filtering { get { return filtering; } }
-
-        /// <summary>
-        /// Gets the state of usage of normalized x, y and z coordinates when accessing a <see cref="ComputeImage"/> in a <see cref="ComputeKernel"/> through the <see cref="ComputeSampler"/>.
-        /// </summary>
-        /// <value> The state of usage of normalized x, y and z coordinates when accessing a <see cref="ComputeImage"/> in a <see cref="ComputeKernel"/> through the <see cref="ComputeSampler"/>. </value>
-        public bool NormalizedCoords { get { return normalizedCoords; } }
-
         #endregion
 
         #region Constructors
@@ -105,6 +78,7 @@ namespace Cloo
         /// <param name="normalizedCoords"> The usage state of normalized coordinates when accessing a <see cref="ComputeImage"/> in a <see cref="ComputeKernel"/>. </param>
         /// <param name="addressing"> The <see cref="ComputeImageAddressing"/> mode of the <see cref="ComputeSampler"/>. Specifies how out-of-range image coordinates are handled while reading. </param>
         /// <param name="filtering"> The <see cref="ComputeImageFiltering"/> mode of the <see cref="ComputeSampler"/>. Specifies the type of filter that must be applied when reading data from an image. </param>
+        [Obsolete("Deprecated in OpenCL 2.0.")]
         public ComputeSampler(ComputeContext context, bool normalizedCoords, ComputeImageAddressing addressing, ComputeImageFiltering filtering)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
@@ -113,10 +87,24 @@ namespace Cloo
 
             SetID(Handle.Value);
             
-            this.addressing = addressing;
             this.context = context;
-            this.filtering = filtering;
-            this.normalizedCoords = normalizedCoords;
+        }
+
+        /// <summary>
+        /// ComputeSamplerWithProperties
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="sampler_properties"></param>
+        /// <param name="error"></param>
+        public ComputeSampler(ComputeContext context, ComputeSamplerInfo[] sampler_properties, out ComputeErrorCode error)
+        {
+            error = ComputeErrorCode.Success;
+            Handle = CLInterface.CL20.CreateSamplerWithProperties(context.Handle, sampler_properties, out error);
+            ComputeException.ThrowOnError(error);
+
+            SetID(Handle.Value);
+
+            this.context = context;
         }
 
         #endregion
@@ -132,7 +120,7 @@ namespace Cloo
         {
             if (Handle.IsValid)
             {
-                CLInterface.CL12.ReleaseSampler(Handle);
+                CLInterface.CL20.ReleaseSampler(Handle);
                 Handle.Invalidate();
             }
         }

@@ -51,6 +51,8 @@ namespace Clootils
             InitializeComponent();
             InitializeSettings();
 
+            //implement the CL20 interface with our bindings
+            Cloo.Bindings.CLInterface.SetInterface(new Cloo.Bindings.CL20());
             textBoxLog.Font = new Font(FontFamily.GenericMonospace, 10);
             textBoxLog.Text =
 @"[Platform] - Select the OpenCL platform that should be used to run the examples.

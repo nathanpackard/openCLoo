@@ -42,48 +42,6 @@ namespace Cloo
     public class ComputeImage2D : ComputeImage
     {
         #region Constructors
-        /*
-        /// <summary>
-        /// Creates a new <see cref="ComputeImage2D"/> from a <c>Bitmap</c>.
-        /// </summary>
-        /// <param name="context"> A valid <see cref="ComputeContext"/> in which the <see cref="ComputeImage2D"/> is created. </param>
-        /// <param name="flags"> A bit-field that is used to specify allocation and usage information about the <see cref="ComputeImage2D"/>. </param>
-        /// <param name="bitmap"> The bitmap to use. </param>
-        /// <remarks> Note that only bitmaps with <c>Format32bppArgb</c> pixel format are currently supported. </remarks>
-        public ComputeImage2D(ComputeContext context, ComputeMemoryFlags flags, Bitmap bitmap)
-            :base(context, flags)
-        {
-            unsafe
-            {                
-                if(bitmap.PixelFormat != PixelFormat.Format32bppArgb)
-                    throw new ArgumentException("Pixel format not supported.");
-                
-                //ComputeImageFormat format = Tools.ConvertImageFormat(bitmap.PixelFormat);
-                ComputeImageFormat format = new ComputeImageFormat(ComputeImageChannelOrder.Bgra, ComputeImageChannelType.UnsignedInt8);
-                BitmapData bitmapData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
-                try
-                {
-                    ComputeErrorCode error = ComputeErrorCode.Success;
-                    Handle = CLBindings.cl12.CreateImage2D(
-                        context.Handle,
-                        flags,
-                        &format,
-                        new IntPtr(bitmap.Width),
-                        new IntPtr(bitmap.Height),
-                        new IntPtr(bitmapData.Stride),
-                        bitmapData.Scan0,
-                        &error);
-                    ComputeException.ThrowOnError(error);
-                }
-                finally
-                {
-                    bitmap.UnlockBits(bitmapData);
-                }
-
-                Init();
-            }
-        }*/
 
         /// <summary>
         /// Creates a new <see cref="ComputeImage2D"/>.
@@ -95,11 +53,12 @@ namespace Cloo
         /// <param name="height"> The height of the <see cref="ComputeImage2D"/> in pixels. </param>
         /// <param name="rowPitch"> The size in bytes of each row of elements of the <see cref="ComputeImage2D"/>. If <paramref name="rowPitch"/> is zero, OpenCL will compute the proper value based on <see cref="ComputeImage.Width"/> and <see cref="ComputeImage.ElementSize"/>. </param>
         /// <param name="data"> The data to initialize the <see cref="ComputeImage2D"/>. Can be <c>IntPtr.Zero</c>. </param>
+        [Obsolete("Deprecated in OpenCL 1.2.")]
         public ComputeImage2D(ComputeContext context, ComputeMemoryFlags flags, ComputeImageFormat format, int width, int height, long rowPitch, IntPtr data)
             : base(context, flags)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CLInterface.CL12.CreateImage2D(context.Handle, flags, ref format, new IntPtr(width), new IntPtr(height), new IntPtr(rowPitch), data, out error);
+            Handle = CLInterface.CL11.CreateImage2D(context.Handle, flags, ref format, new IntPtr(width), new IntPtr(height), new IntPtr(rowPitch), data, out error);
             ComputeException.ThrowOnError(error);
 
             Init();
@@ -127,7 +86,7 @@ namespace Cloo
         public static ComputeImage2D CreateFromGLRenderbuffer(ComputeContext context, ComputeMemoryFlags flags, int renderbufferId)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            CLMemoryHandle image = CLInterface.CL12.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
+            CLMemoryHandle image = CLInterface.CL20.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
             ComputeException.ThrowOnError(error);
 
             return new ComputeImage2D(image, context, flags);
@@ -142,10 +101,11 @@ namespace Cloo
         /// <param name="mipLevel"> The mipmap level of the OpenGL 2D texture object to be used. </param>
         /// <param name="textureId"> The OpenGL 2D texture object id to use. </param>
         /// <returns> The created <see cref="ComputeImage2D"/>. </returns>
+        [Obsolete("Deprecated in OpenCL 1.2.")]
         public static ComputeImage2D CreateFromGLTexture2D(ComputeContext context, ComputeMemoryFlags flags, int textureTarget, int mipLevel, int textureId)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            CLMemoryHandle image = CLInterface.CL12.CreateFromGLTexture2D(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
+            CLMemoryHandle image = CLInterface.CL11.CreateFromGLTexture2D(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
             ComputeException.ThrowOnError(error);
 
             return new ComputeImage2D(image, context, flags);

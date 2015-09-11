@@ -98,14 +98,14 @@ namespace Cloo
             SetID(Handle.Value);
 
             context = program.Context;
-            functionName = GetStringInfo<CLKernelHandle, ComputeKernelInfo>(Handle, ComputeKernelInfo.FunctionName, CLInterface.CL12.GetKernelInfo);
+            functionName = GetStringInfo<CLKernelHandle, ComputeKernelInfo>(Handle, ComputeKernelInfo.FunctionName, CLInterface.CL20.GetKernelInfo);
             this.program = program;
         }
 
         internal ComputeKernel(string functionName, ComputeProgram program)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CLInterface.CL12.CreateKernel(program.Handle, functionName, out error);
+            Handle = CLInterface.CL20.CreateKernel(program.Handle, functionName, out error);
             ComputeException.ThrowOnError(error);
 
             SetID(Handle.Value);
@@ -127,7 +127,7 @@ namespace Cloo
         public long GetLocalMemorySize(ComputeDevice device)
         {
             return GetInfo<CLKernelHandle, CLDeviceHandle, ComputeKernelWorkGroupInfo, long>(
-                Handle, device.Handle, ComputeKernelWorkGroupInfo.LocalMemorySize, CLInterface.CL12.GetKernelWorkGroupInfo);
+                Handle, device.Handle, ComputeKernelWorkGroupInfo.LocalMemorySize, CLInterface.CL20.GetKernelWorkGroupInfo);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Cloo
         {
             return ComputeTools.ConvertArray(
                 GetArrayInfo<CLKernelHandle, CLDeviceHandle, ComputeKernelWorkGroupInfo, IntPtr>(
-                    Handle, device.Handle, ComputeKernelWorkGroupInfo.CompileWorkGroupSize, CLInterface.CL12.GetKernelWorkGroupInfo));
+                    Handle, device.Handle, ComputeKernelWorkGroupInfo.CompileWorkGroupSize, CLInterface.CL20.GetKernelWorkGroupInfo));
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Cloo
         public long GetPreferredWorkGroupSizeMultiple(ComputeDevice device)
         {
             return (long)GetInfo<CLKernelHandle, CLDeviceHandle, ComputeKernelWorkGroupInfo, IntPtr>(
-                Handle, device.Handle, ComputeKernelWorkGroupInfo.PreferredWorkGroupSizeMultiple, CLInterface.CL12.GetKernelWorkGroupInfo);
+                Handle, device.Handle, ComputeKernelWorkGroupInfo.PreferredWorkGroupSizeMultiple, CLInterface.CL20.GetKernelWorkGroupInfo);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Cloo
         public long GetPrivateMemorySize(ComputeDevice device)
         {
             return GetInfo<CLKernelHandle, CLDeviceHandle, ComputeKernelWorkGroupInfo, long>(
-                Handle, device.Handle, ComputeKernelWorkGroupInfo.PrivateMemorySize, CLInterface.CL12.GetKernelWorkGroupInfo);
+                Handle, device.Handle, ComputeKernelWorkGroupInfo.PrivateMemorySize, CLInterface.CL20.GetKernelWorkGroupInfo);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Cloo
         public long GetWorkGroupSize(ComputeDevice device)
         {
             return (long)GetInfo<CLKernelHandle, CLDeviceHandle, ComputeKernelWorkGroupInfo, IntPtr>(
-                    Handle, device.Handle, ComputeKernelWorkGroupInfo.WorkGroupSize, CLInterface.CL12.GetKernelWorkGroupInfo);
+                    Handle, device.Handle, ComputeKernelWorkGroupInfo.WorkGroupSize, CLInterface.CL20.GetKernelWorkGroupInfo);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Cloo
         /// </remarks>
         public void SetArgument(int index, IntPtr dataSize, IntPtr dataAddr)
         {
-            ComputeErrorCode error = CLInterface.CL12.SetKernelArg(Handle, index, dataSize, dataAddr);
+            ComputeErrorCode error = CLInterface.CL20.SetKernelArg(Handle, index, dataSize, dataAddr);
             ComputeException.ThrowOnError(error);
         }
 
@@ -264,7 +264,7 @@ namespace Cloo
         {
             if (Handle.IsValid)
             {
-                CLInterface.CL12.ReleaseKernel(Handle);
+                CLInterface.CL20.ReleaseKernel(Handle);
                 Handle.Invalidate();
             }
         }
