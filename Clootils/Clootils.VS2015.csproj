@@ -56,19 +56,11 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Cloo\Source\dllCL10.cs">
-      <Link>dllCL10.cs</Link>
-    </Compile>
-    <Compile Include="..\Cloo\Source\dllCL11.cs">
-      <Link>dllCL11.cs</Link>
-    </Compile>
-    <Compile Include="..\Cloo\Source\dllCL12.cs">
-      <Link>dllCL12.cs</Link>
-    </Compile>
-    <Compile Include="..\Cloo\Source\dllCL20.cs">
-      <Link>dllCL20.cs</Link>
-    </Compile>
+    <Compile Include="CL10.cs" />
+    <Compile Include="CL11.cs" />
     <Compile Include="CL11Example.cs" />
+    <Compile Include="CL12.cs" />
+    <Compile Include="CL20.cs" />
     <Compile Include="IExample.cs" />
     <Compile Include="ImageExample.cs" />
     <Compile Include="InfoExample.cs" />

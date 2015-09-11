@@ -64,10 +64,10 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Bindings\CL10.cs" />
-    <Compile Include="Source\Bindings\CL11.cs" />
-    <Compile Include="Source\Bindings\CL12.cs" />
-    <Compile Include="Source\Bindings\CL20.cs" />
+    <Compile Include="Source\Bindings\ICL10.cs" />
+    <Compile Include="Source\Bindings\ICL11.cs" />
+    <Compile Include="Source\Bindings\ICL12.cs" />
+    <Compile Include="Source\Bindings\ICL20.cs" />
     <Compile Include="Source\Bindings\CLInterface.cs" />
     <Compile Include="Source\Bindings\CLCommandQueueHandle.cs" />
     <Compile Include="Source\Bindings\CLContextHandle.cs" />
