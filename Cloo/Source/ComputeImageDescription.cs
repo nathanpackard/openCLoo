@@ -79,15 +79,54 @@ namespace Cloo
 
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ComputeMemoryType Type { get { return image_type; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int Width { get { return (int)image_width; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int Height { get { return (int)image_height; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int Depth { get { return (int)image_depth; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public long ArraySize { get { return (int)image_array_size; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public long RowPitch { get { return (int)image_row_pitch; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public long SlicePitch { get { return (int)image_slice_pitch; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int NumMipLevels { get { return (int)num_mip_levels; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int NumSamples { get { return (int)num_samples; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public IntPtr Buffer { get { return buffer; } }
 
         #endregion

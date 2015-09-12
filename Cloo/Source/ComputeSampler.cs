@@ -120,7 +120,7 @@ namespace Cloo
         {
             if (Handle.IsValid)
             {
-                CLInterface.CL20.ReleaseSampler(Handle);
+                CLInterface.CL10.ReleaseSampler(Handle);
                 Handle.Invalidate();
             }
         }

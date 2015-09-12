@@ -40,21 +40,85 @@ namespace Cloo.Bindings
     /// <remarks> See the OpenCL specification for documentation regarding these functions. </remarks>
     public interface ICL12 : ICL11
     {
-        ComputeErrorCode CreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, System.Int32 num_devices, [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, out IntPtr num_devices_ret);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
+        ComputeErrorCode CreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, System.Int32 num_devices, [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, out int num_devices_ret);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode RetainDevice(CLDeviceHandle device);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode ReleaseDevice(CLDeviceHandle device);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         CLMemoryHandle CreateImage(CLContextHandle context, ComputeMemoryFlags flags, ref ComputeImageFormat image_format, ref ComputeImageDescription image_desc, IntPtr host_ptr, out ComputeErrorCode errcode_ret);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         CLProgramHandle CreateProgramWithBuiltInKernels(CLContextHandle context, Int32 num_devices, [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list, String kernel_names, out ComputeErrorCode errcode_ret);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode CompileProgram(CLProgramHandle program, Int32 num_devices, [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list, String options, Int32 num_input_headers, [MarshalAs(UnmanagedType.LPArray)] CLProgramHandle[] input_headers, String[] header_include_names, ComputeProgramBuildNotifier pfn_notify, IntPtr user_data);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode LinkProgram(CLContextHandle context, Int32 num_devices, [MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] device_list, String options, Int32 num_input_programs, ComputeProgramBuildNotifier pfn_notify, IntPtr user_data, out ComputeErrorCode errcode_ret);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode UnloadPlatformCompiler(CLProgramHandle program);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode GetKernelArgInfo(CLKernelHandle kernel, Int32 arg_indx, ComputeKernelArgInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode EnqueueFillBuffer(CLCommandQueueHandle command_queue, CLMemoryHandle buffer, IntPtr pattern, IntPtr pattern_size, IntPtr offset, IntPtr size, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode EnqueueFillImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, IntPtr fill_color, ref SysIntX3 origin, ref SysIntX3 region, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode EnqueueMigrateMemObjects(CLCommandQueueHandle command_queue, Int32 num_mem_objects, [MarshalAs(UnmanagedType.LPArray)] CLMemoryHandle[] mem_objects, ComputeMemoryMigrationFlags flags, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode EnqueueMarkerWithWaitList(CLCommandQueueHandle command_queue, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         ComputeErrorCode EnqueueBarrierWithWaitList(CLCommandQueueHandle command_queue, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         IntPtr GetExtensionFunctionAddressForPlatform(CLPlatformHandle platform, String func_name);
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
         CLMemoryHandle CreateFromGLTexture(CLContextHandle context, ComputeMemoryFlags flags, Int32 texture_target, Int32 miplevel, Int32 texture, out ComputeErrorCode errcode_ret);
 
         #region Deprecated functions

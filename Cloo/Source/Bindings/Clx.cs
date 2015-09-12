@@ -109,7 +109,7 @@ namespace Cloo.Bindings
             if (platform.Extensions.Contains("cl_khr_gl_sharing"))
             {
                 if (!CLInterface.IsOpenCL12Available()) clGetGLContextInfoKHR = (Delegates.clGetGLContextInfoKHR)Marshal.GetDelegateForFunctionPointer(CLInterface.CL11.GetExtensionFunctionAddress("clGetGLContextInfoKHR"), typeof(Delegates.clGetGLContextInfoKHR));
-                else clGetGLContextInfoKHR = (Delegates.clGetGLContextInfoKHR)Marshal.GetDelegateForFunctionPointer(CLInterface.CL20.GetExtensionFunctionAddressForPlatform(platform.Handle, "clGetGLContextInfoKHR"), typeof(Delegates.clGetGLContextInfoKHR));
+                else clGetGLContextInfoKHR = (Delegates.clGetGLContextInfoKHR)Marshal.GetDelegateForFunctionPointer(CLInterface.CL12.GetExtensionFunctionAddressForPlatform(platform.Handle, "clGetGLContextInfoKHR"), typeof(Delegates.clGetGLContextInfoKHR));
             }
             //if (platform.Extensions.Contains("cl_khr_icd"))
             //    clIcdGetPlatformIDsKHR = (Delegates.clIcdGetPlatformIDsKHR)Marshal.GetDelegateForFunctionPointer(CLBindings.cl12.GetExtensionFunctionAddress("clIcdGetPlatformIDsKHR"), typeof(Delegates.clIcdGetPlatformIDsKHR));

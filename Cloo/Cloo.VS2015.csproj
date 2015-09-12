@@ -84,6 +84,8 @@
     <Compile Include="Source\ComputeCommandQueue.Added.cs" />
     <Compile Include="Source\ComputeCompiler.cs" />
     <Compile Include="Source\ComputeContext.cs" />
+    <Compile Include="Source\ComputeDevicePartitionPropertyList.cs" />
+    <Compile Include="Source\ComputeDevicePartitionProperty.cs" />
     <Compile Include="Source\ComputeContextPropertyList.cs" />
     <Compile Include="Source\ComputeContextProperty.cs" />
     <Compile Include="Source\ComputeDevice.cs" />

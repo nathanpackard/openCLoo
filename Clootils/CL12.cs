@@ -48,7 +48,7 @@ namespace Cloo.Bindings
         /// </summary>
         [DllImport(libName, EntryPoint = "clCreateSubDevices")]
         public static extern ComputeErrorCode StaticCreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, System.Int32 num_devices, [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, out IntPtr num_devices_ret);
-        new public ComputeErrorCode CreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, System.Int32 num_devices, [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, out IntPtr num_devices_ret) { return StaticCreateSubDevices(device, properties, num_devices, devices, out num_devices_ret); }
+        public ComputeErrorCode CreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, System.Int32 num_devices, [Out, MarshalAs(UnmanagedType.LPArray)] CLDeviceHandle[] devices, out IntPtr num_devices_ret) { return StaticCreateSubDevices(device, properties, num_devices, devices, out num_devices_ret); }
 
         /// <summary>
         /// See the OpenCL specification.
@@ -118,7 +118,7 @@ namespace Cloo.Bindings
         /// </summary>
         [DllImport(libName, EntryPoint = "clEnqueueFillImage")]
         public static extern ComputeErrorCode StaticEnqueueFillImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, IntPtr fill_color, ref SysIntX3 origin, ref SysIntX3 region, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, out CLEventHandle new_event);
-        new public ComputeErrorCode EnqueueFillImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, IntPtr fill_color, ref SysIntX3 origin, ref SysIntX3 region, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, CLEventHandle new_event) { return StaticEnqueueFillImage(command_queue, image, fill_color, ref origin, ref region, num_events_in_wait_list, event_wait_list, out new_event); }
+        public ComputeErrorCode EnqueueFillImage(CLCommandQueueHandle command_queue, CLMemoryHandle image, IntPtr fill_color, ref SysIntX3 origin, ref SysIntX3 region, Int32 num_events_in_wait_list, [MarshalAs(UnmanagedType.LPArray)] CLEventHandle[] event_wait_list, CLEventHandle new_event) { return StaticEnqueueFillImage(command_queue, image, fill_color, ref origin, ref region, num_events_in_wait_list, event_wait_list, out new_event); }
 
         /// <summary>
         /// See the OpenCL specification.

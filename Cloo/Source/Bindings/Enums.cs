@@ -533,50 +533,57 @@ namespace Cloo
         Properties = 0x1082,
         /// <summary> </summary>
         NumDevices = 0x1083,
-        /// <summary> </summary>
-        Platform = 0x1084,
-        /// <summary> </summary>
-        InteropUserSync = 0x1085,
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public enum ComputeDevicePartitionProperty : int
+    public enum ComputeDevicePartitionPropertyName : long
     {
         /// <summary> </summary>
         Equally = 0x1086,
         /// <summary> </summary>
         ByCounts = 0x1087,
         /// <summary> </summary>
-        ByCountsListEnd = 0x0,
-        /// <summary> </summary>
         AffinityDomain = 0x1088,
+        /// <summary> </summary>
+        AffinityDomainNuma = (1 << 0),
+        /// <summary> </summary>
+        AffinityDomainL4Cache = (1 << 1),
+        /// <summary> </summary>
+        AffinityDomainL3Cache = (1 << 2),
+        /// <summary> </summary>
+        AffinityDomainL2Cache = (1 << 3),
+        /// <summary> </summary>
+        AffinityDomainL1Cache = (1 << 4),
+        /// <summary> </summary>
+        AffinityDomainNextPartitionAble = (1 << 5),
     }
+
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    //public enum ComputeDeviceAffinityDomain : long
+    //{
+    //    /// <summary> </summary>
+    //    Numa = (1 << 0),
+    //    /// <summary> </summary>
+    //    L4Cache = (1 << 1),
+    //    /// <summary> </summary>
+    //    L3Cache = (1 << 2),
+    //    /// <summary> </summary>
+    //    L2Cache = (1 << 3),
+    //    /// <summary> </summary>
+    //    L1Cache = (1 << 4),
+    //    /// <summary> </summary>
+    //    NextPartitionAble = (1 << 5),
+    //}
+
 
     /// <summary>
     /// 
     /// </summary>
-    public enum ComputeDeviceAffinityDomain : int
-    {
-        /// <summary> </summary>
-        Numa = (1 << 0),
-        /// <summary> </summary>
-        L4Cache = (1 << 1),
-        /// <summary> </summary>
-        L3Cache = (1 << 2),
-        /// <summary> </summary>
-        L2Cache = (1 << 3),
-        /// <summary> </summary>
-        L1Cache = (1 << 4),
-        /// <summary> </summary>
-        NextPartitionAble = (1 << 5),
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum ComputeDeviceSvmCapabilities : int
+    public enum ComputeDeviceSvmCapabilities : long
     {
         /// <summary> </summary>
         CoarseGrainBuffer = (1 << 0),
@@ -594,7 +601,9 @@ namespace Cloo
     public enum ComputeContextPropertyName : int
     {
         /// <summary> </summary>
-        Platform = ComputeContextInfo.Platform,
+        Platform = 0x1084,
+        /// <summary> </summary>
+        InteropUserSync = 0x1085,
         /// <summary> </summary>
         CL_GL_CONTEXT_KHR = 0x2008,
         /// <summary> </summary>
@@ -797,7 +806,7 @@ namespace Cloo
     /// <summary>
     /// The memory migration flags.
     /// </summary>
-    public enum ComputeMemoryMigrationFlags : int
+    public enum ComputeMemoryMigrationFlags : long
     {
         /// <summary> </summary>
         ObjectHost = (1 << 0),
@@ -876,7 +885,7 @@ namespace Cloo
     /// <summary>
     /// The sampler info query symbols.
     /// </summary>
-    public enum ComputeSamplerInfo : int
+    public enum ComputeSamplerInfo : long
     {
         /// <summary> </summary>
         ReferenceCount = 0x1150,
@@ -1051,7 +1060,7 @@ namespace Cloo
     /// <summary>
     /// 
     /// </summary>
-    public enum ComputeKernelArgTypeQualifier : int
+    public enum ComputeKernelArgTypeQualifier : long
     {
         /// <summary> </summary>
         None = 0,

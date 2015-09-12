@@ -35,6 +35,7 @@ namespace Cloo
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using Cloo.Bindings;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Represents an OpenCL device.
@@ -580,7 +581,7 @@ namespace Cloo
             maxSamplers = GetInfo<uint>(ComputeDeviceInfo.MaxSamplers);
             maxWorkGroupSize = (long)GetInfo<IntPtr>(ComputeDeviceInfo.MaxWorkGroupSize);
             maxWorkItemDimensions = GetInfo<uint>(ComputeDeviceInfo.MaxWorkItemDimensions);
-            maxWorkItemSizes = new ReadOnlyCollection<long>(ComputeTools.ConvertArray(GetArrayInfo<CLDeviceHandle, ComputeDeviceInfo, IntPtr>(Handle, ComputeDeviceInfo.MaxWorkItemSizes, CLInterface.CL20.GetDeviceInfo)));
+            maxWorkItemSizes = new ReadOnlyCollection<long>(ComputeTools.ConvertArray(GetArrayInfo<CLDeviceHandle, ComputeDeviceInfo, IntPtr>(Handle, ComputeDeviceInfo.MaxWorkItemSizes, CLInterface.CL10.GetDeviceInfo)));
             maxWriteImageArgs = GetInfo<uint>(ComputeDeviceInfo.MaxWriteImageArguments);
             memBaseAddrAlign = GetInfo<uint>(ComputeDeviceInfo.MemoryBaseAddressAlignment);
             minDataTypeAlignSize = GetInfo<uint>(ComputeDeviceInfo.MinDataTypeAlignmentSize);
@@ -601,23 +602,46 @@ namespace Cloo
             version = GetStringInfo(ComputeDeviceInfo.Version);
         }
 
+        /// <summary>
+        /// Return up to maxNumSubDevices SubDevices with the given properties
+        /// </summary>
+        /// <param name="properties"></param>
+        /// <param name="maxNumSubDevices"></param>
+        /// <returns></returns>
+        public ICollection<ComputeDevice> GetSubDevices(ComputeDevicePartitionPropertyList properties, int maxNumSubDevices = int.MaxValue)
+        {
+            IntPtr[] propertyArray = (properties != null) ? properties.ToIntPtrArray() : null;
+
+            int numDevicesRet = 0;
+            ComputeErrorCode error = CLInterface.CL12.CreateSubDevices(Handle, propertyArray, 0, null, out numDevicesRet);
+            ComputeException.ThrowOnError(error);
+            
+            CLDeviceHandle[] subDevices = new CLDeviceHandle[Math.Min(numDevicesRet, maxNumSubDevices)];
+            error = CLInterface.CL12.CreateSubDevices(Handle, propertyArray, subDevices.Length, subDevices, out numDevicesRet);
+            ComputeException.ThrowOnError(error);
+
+            Collection<ComputeDevice> result = new Collection<ComputeDevice>();
+            foreach (var dh in subDevices) result.Add(new ComputeDevice(platform, dh));
+            return result;
+        }
+
         #endregion
 
         #region Private methods
 
         private bool GetBoolInfo(ComputeDeviceInfo paramName)
         {
-            return GetBoolInfo<CLDeviceHandle, ComputeDeviceInfo>(Handle, paramName, CLInterface.CL20.GetDeviceInfo);
+            return GetBoolInfo<CLDeviceHandle, ComputeDeviceInfo>(Handle, paramName, CLInterface.CL10.GetDeviceInfo);
         }
 
         private NativeType GetInfo<NativeType>(ComputeDeviceInfo paramName) where NativeType : struct
         {
-            return GetInfo<CLDeviceHandle, ComputeDeviceInfo, NativeType>(Handle, paramName, CLInterface.CL20.GetDeviceInfo);
+            return GetInfo<CLDeviceHandle, ComputeDeviceInfo, NativeType>(Handle, paramName, CLInterface.CL10.GetDeviceInfo);
         }
 
         private string GetStringInfo(ComputeDeviceInfo paramName)
         {
-            return GetStringInfo<CLDeviceHandle, ComputeDeviceInfo>(Handle, paramName, CLInterface.CL20.GetDeviceInfo);
+            return GetStringInfo<CLDeviceHandle, ComputeDeviceInfo>(Handle, paramName, CLInterface.CL10.GetDeviceInfo);
         }
 
         #endregion

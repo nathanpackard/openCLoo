@@ -71,7 +71,7 @@ namespace Cloo
             SetID(Handle.Value);
 
             CommandQueue = queue;
-            Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, int>(Handle, ComputeEventInfo.CommandType, CLInterface.CL20.GetEventInfo);
+            Type = (ComputeCommandType)GetInfo<CLEventHandle, ComputeEventInfo, int>(Handle, ComputeEventInfo.CommandType, CLInterface.CL10.GetEventInfo);
             Context = queue.Context;
 
             if (ComputeTools.ParseVersionString(CommandQueue.Device.Platform.Version, 1) > new Version(1, 0))

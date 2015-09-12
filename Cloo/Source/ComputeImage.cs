@@ -96,7 +96,7 @@ namespace Cloo
         public static ComputeImage CreateFromGLTexture(ComputeContext context, ComputeMemoryFlags flags, int textureTarget, int mipLevel, int textureId)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            CLMemoryHandle image = CLInterface.CL20.CreateFromGLTexture(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
+            CLMemoryHandle image = CLInterface.CL12.CreateFromGLTexture(context.Handle, flags, textureTarget, mipLevel, textureId, out error);
             ComputeException.ThrowOnError(error);
             return new ComputeImage(image, context, flags);
         }
@@ -111,7 +111,7 @@ namespace Cloo
         public static ComputeImage CreateFromGLRenderbuffer(ComputeContext context, ComputeMemoryFlags flags, int renderbufferId)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            CLMemoryHandle image = CLInterface.CL20.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
+            CLMemoryHandle image = CLInterface.CL10.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
             ComputeException.ThrowOnError(error);
 
             return new ComputeImage(image, context, flags);
@@ -127,11 +127,11 @@ namespace Cloo
         public static ICollection<ComputeImageFormat> GetSupportedFormats(ComputeContext context, ComputeMemoryFlags flags, ComputeMemoryType type)
         {
             int formatCountRet = 0;
-            ComputeErrorCode error = CLInterface.CL20.GetSupportedImageFormats(context.Handle, flags, type, 0, null, out formatCountRet);
+            ComputeErrorCode error = CLInterface.CL10.GetSupportedImageFormats(context.Handle, flags, type, 0, null, out formatCountRet);
             ComputeException.ThrowOnError(error);
 
             ComputeImageFormat[] formats = new ComputeImageFormat[formatCountRet];
-            error = CLInterface.CL20.GetSupportedImageFormats(context.Handle, flags, type, formatCountRet, formats, out formatCountRet);
+            error = CLInterface.CL10.GetSupportedImageFormats(context.Handle, flags, type, formatCountRet, formats, out formatCountRet);
             ComputeException.ThrowOnError(error);
 
             return new Collection<ComputeImageFormat>(formats);
@@ -162,7 +162,7 @@ namespace Cloo
             : base(context, flags)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CLInterface.CL20.CreateImage(context.Handle, flags, ref format, ref imageDescription, data, out error);
+            Handle = CLInterface.CL12.CreateImage(context.Handle, flags, ref format, ref imageDescription, data, out error);
             ComputeException.ThrowOnError(error);
 
             Init();
@@ -187,13 +187,13 @@ namespace Cloo
         {
             SetID(Handle.Value);
 
-            Depth = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Depth, CLInterface.CL20.GetImageInfo);
-            ElementSize = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.ElementSize, CLInterface.CL20.GetImageInfo);
-            Height = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Height, CLInterface.CL20.GetImageInfo);
-            RowPitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.RowPitch, CLInterface.CL20.GetImageInfo);
-            Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL20.GetMemObjectInfo);
-            SlicePitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.SlicePitch, CLInterface.CL20.GetImageInfo);
-            Width = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Width, CLInterface.CL20.GetImageInfo);
+            Depth = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Depth, CLInterface.CL10.GetImageInfo);
+            ElementSize = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.ElementSize, CLInterface.CL10.GetImageInfo);
+            Height = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Height, CLInterface.CL10.GetImageInfo);
+            RowPitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.RowPitch, CLInterface.CL10.GetImageInfo);
+            Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL10.GetMemObjectInfo);
+            SlicePitch = (long)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.SlicePitch, CLInterface.CL10.GetImageInfo);
+            Width = (int)GetInfo<CLMemoryHandle, ComputeImageInfo, IntPtr>(Handle, ComputeImageInfo.Width, CLInterface.CL10.GetImageInfo);
         }
 
         #endregion

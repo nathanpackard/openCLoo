@@ -149,7 +149,7 @@ namespace Cloo
             callback = notify;
 
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CLInterface.CL20.CreateContext(propertyArray, handleCount, deviceHandles, notify, notifyDataPtr, out error);
+            Handle = CLInterface.CL10.CreateContext(propertyArray, handleCount, deviceHandles, notify, notifyDataPtr, out error);
             ComputeException.ThrowOnError(error);
             
             SetID(Handle.Value);
@@ -173,7 +173,7 @@ namespace Cloo
             callback = notify;
 
             ComputeErrorCode error = ComputeErrorCode.Success;
-            Handle = CLInterface.CL20.CreateContextFromType(propertyArray, deviceType, notify, userDataPtr, out error);
+            Handle = CLInterface.CL10.CreateContextFromType(propertyArray, deviceType, notify, userDataPtr, out error);
             ComputeException.ThrowOnError(error);
 
             SetID(Handle.Value);
@@ -203,7 +203,7 @@ namespace Cloo
             // free native resources
             if (Handle.IsValid)
             {
-                CLInterface.CL20.ReleaseContext(Handle);
+                CLInterface.CL10.ReleaseContext(Handle);
                 Handle.Invalidate();
             }
         }
@@ -214,7 +214,7 @@ namespace Cloo
 
         private ReadOnlyCollection<ComputeDevice> GetDevices()
         {
-            List<CLDeviceHandle> deviceHandles = new List<CLDeviceHandle>(GetArrayInfo<CLContextHandle, ComputeContextInfo, CLDeviceHandle>(Handle, ComputeContextInfo.Devices, CLInterface.CL20.GetContextInfo));
+            List<CLDeviceHandle> deviceHandles = new List<CLDeviceHandle>(GetArrayInfo<CLContextHandle, ComputeContextInfo, CLDeviceHandle>(Handle, ComputeContextInfo.Devices, CLInterface.CL10.GetContextInfo));
             List<ComputeDevice> devices = new List<ComputeDevice>();
             foreach (ComputePlatform platform in ComputePlatform.Platforms)
             {

@@ -83,12 +83,11 @@ namespace Cloo
         /// <param name="flags"> A bit-field that is used to specify usage information about the <see cref="ComputeImage2D"/>. Only <c>ComputeMemoryFlags.ReadOnly</c>, <c>ComputeMemoryFlags.WriteOnly</c> and <c>ComputeMemoryFlags.ReadWrite</c> are allowed. </param>
         /// <param name="renderbufferId"> The OpenGL renderbuffer object id to use. </param>
         /// <returns> The created <see cref="ComputeImage2D"/>. </returns>
-        public static ComputeImage2D CreateFromGLRenderbuffer(ComputeContext context, ComputeMemoryFlags flags, int renderbufferId)
+        new public static ComputeImage2D CreateFromGLRenderbuffer(ComputeContext context, ComputeMemoryFlags flags, int renderbufferId)
         {
             ComputeErrorCode error = ComputeErrorCode.Success;
-            CLMemoryHandle image = CLInterface.CL20.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
+            CLMemoryHandle image = CLInterface.CL10.CreateFromGLRenderbuffer(context.Handle, flags, renderbufferId, out error);
             ComputeException.ThrowOnError(error);
-
             return new ComputeImage2D(image, context, flags);
         }
 

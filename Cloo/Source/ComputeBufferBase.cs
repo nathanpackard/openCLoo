@@ -75,7 +75,7 @@ namespace Cloo
         {
             SetID(Handle.Value);
 
-            Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL20.GetMemObjectInfo);
+            Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL10.GetMemObjectInfo);
             Count = Size / Marshal.SizeOf(typeof(T));
         }
 

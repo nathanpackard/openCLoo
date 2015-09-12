@@ -476,6 +476,86 @@
             </summary>
             <remarks> See the OpenCL specification for documentation regarding these functions. </remarks>
         </member>
+        <member name="M:Cloo.Bindings.ICL12.CreateSubDevices(Cloo.Bindings.CLDeviceHandle,System.IntPtr[],System.Int32,Cloo.Bindings.CLDeviceHandle[],System.Int32@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.RetainDevice(Cloo.Bindings.CLDeviceHandle)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.ReleaseDevice(Cloo.Bindings.CLDeviceHandle)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.CreateImage(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,Cloo.ComputeImageFormat@,Cloo.ComputeImageDescription@,System.IntPtr,Cloo.ComputeErrorCode@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.CreateProgramWithBuiltInKernels(Cloo.Bindings.CLContextHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.String,Cloo.ComputeErrorCode@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.CompileProgram(Cloo.Bindings.CLProgramHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.String,System.Int32,Cloo.Bindings.CLProgramHandle[],System.String[],Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.LinkProgram(Cloo.Bindings.CLContextHandle,System.Int32,Cloo.Bindings.CLDeviceHandle[],System.String,System.Int32,Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr,Cloo.ComputeErrorCode@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.UnloadPlatformCompiler(Cloo.Bindings.CLProgramHandle)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.GetKernelArgInfo(Cloo.Bindings.CLKernelHandle,System.Int32,Cloo.ComputeKernelArgInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.EnqueueFillBuffer(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.EnqueueFillImage(Cloo.Bindings.CLCommandQueueHandle,Cloo.Bindings.CLMemoryHandle,System.IntPtr,Cloo.SysIntX3@,Cloo.SysIntX3@,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.EnqueueMigrateMemObjects(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLMemoryHandle[],Cloo.ComputeMemoryMigrationFlags,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.EnqueueMarkerWithWaitList(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.EnqueueBarrierWithWaitList(Cloo.Bindings.CLCommandQueueHandle,System.Int32,Cloo.Bindings.CLEventHandle[],Cloo.Bindings.CLEventHandle@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.GetExtensionFunctionAddressForPlatform(Cloo.Bindings.CLPlatformHandle,System.String)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.Bindings.ICL12.CreateFromGLTexture(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
         <member name="M:Cloo.Bindings.ICL12.CreateFromGLTexture2D(Cloo.Bindings.CLContextHandle,Cloo.ComputeMemoryFlags,System.Int32,System.Int32,System.Int32,Cloo.ComputeErrorCode@)">
             <summary>
             See the OpenCL specification.
@@ -1829,6 +1909,105 @@
             <param name="manual"> Specifies the operation mode of this method. </param>
             <remarks> <paramref name="manual"/> must be <c>true</c> if this method is invoked directly by the application. </remarks>
         </member>
+        <member name="T:Cloo.ComputeDevicePartitionPropertyList">
+            <summary>
+            Represents a list of <see cref="T:Cloo.ComputeDevicePartitionProperty"/>s.
+            </summary>
+            <remarks> A <see cref="T:Cloo.ComputeDevicePartitionPropertyList"/> is used to specify the properties of a SubDevice. </remarks>
+            <seealso cref="T:Cloo.ComputeDevicePartitionProperty"/>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.#ctor(System.Collections.Generic.IEnumerable{Cloo.ComputeDevicePartitionProperty})">
+            <summary>
+            Creates a new <see cref="T:Cloo.ComputeDevicePartitionPropertyList"/> which contains the specified <see cref="T:Cloo.ComputeDevicePartitionProperty"/>s.
+            </summary>
+            <param name="properties"> An enumerable of <see cref="T:Cloo.ComputeDevicePartitionProperty"/>'s. </param>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.GetByName(Cloo.ComputeDevicePartitionPropertyName)">
+            <summary>
+            Gets a <see cref="T:Cloo.ComputeDevicePartitionProperty"/> of a specified <c>ComputeDevicePartitionPropertyName</c>.
+            </summary>
+            <param name="name"> The <see cref="T:Cloo.ComputeDevicePartitionPropertyName"/> of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>. </param>
+            <returns> The requested <see cref="T:Cloo.ComputeDevicePartitionProperty"/> or <c>null</c> if no such <see cref="T:Cloo.ComputeDevicePartitionProperty"/> exists in the <see cref="T:Cloo.ComputeDevicePartitionPropertyList"/>. </returns>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.Add(Cloo.ComputeDevicePartitionProperty)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.Contains(Cloo.ComputeDevicePartitionProperty)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.CopyTo(Cloo.ComputeDevicePartitionProperty[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <param name="arrayIndex"></param>
+        </member>
+        <member name="P:Cloo.ComputeDevicePartitionPropertyList.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeDevicePartitionPropertyList.IsReadOnly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.Remove(Cloo.ComputeDevicePartitionProperty)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionPropertyList.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Cloo.ComputeDevicePartitionProperty">
+            <summary>
+            Represents an OpenCL device partition property.
+            </summary>
+            <remarks> An OpenCL device partition property is a (name, value) data pair. </remarks>
+        </member>
+        <member name="P:Cloo.ComputeDevicePartitionProperty.Name">
+            <summary>
+            Gets the <see cref="T:Cloo.ComputeDevicePartitionPropertyName"/> of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>.
+            </summary>
+            <value> The <see cref="T:Cloo.ComputeDevicePartitionPropertyName"/> of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>. </value>
+        </member>
+        <member name="P:Cloo.ComputeDevicePartitionProperty.Value">
+            <summary>
+            Gets the value of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>.
+            </summary>
+            <value> The value of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>. </value>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionProperty.#ctor(Cloo.ComputeDevicePartitionPropertyName,System.IntPtr)">
+            <summary>
+            Creates a new <see cref="T:Cloo.ComputeDevicePartitionProperty"/>.
+            </summary>
+            <param name="name"> The name of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>. </param>
+            <param name="value"> The value of the created <see cref="T:Cloo.ComputeDevicePartitionProperty"/>. </param>
+        </member>
+        <member name="M:Cloo.ComputeDevicePartitionProperty.ToString">
+            <summary>
+            Gets the string representation of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>.
+            </summary>
+            <returns> The string representation of the <see cref="T:Cloo.ComputeDevicePartitionProperty"/>. </returns>
+        </member>
         <member name="T:Cloo.ComputeContextPropertyList">
             <summary>
             Represents a list of <see cref="T:Cloo.ComputeContextProperty"/>s.
@@ -2373,6 +2552,14 @@
             <value> The OpenCL C version string supported by the <see cref="T:Cloo.ComputeDevice"/>. The version string has the following format: <c>OpenCL[space]C[space][major_version].[minor_version][space][vendor-specific information]</c>. </value>
             <remarks> Requires OpenCL 1.1. </remarks>
         </member>
+        <member name="M:Cloo.ComputeDevice.GetSubDevices(Cloo.ComputeDevicePartitionPropertyList,System.Int32)">
+            <summary>
+            Return up to maxNumSubDevices SubDevices with the given properties
+            </summary>
+            <param name="properties"></param>
+            <param name="maxNumSubDevices"></param>
+            <returns></returns>
+        </member>
         <member name="T:Cloo.ComputeEvent">
             <summary>
             Represents an OpenCL event.
@@ -2849,6 +3036,56 @@
             <remarks> This structure defines the type, count and size of the image channels. </remarks>
             <seealso cref="T:Cloo.ComputeImage"/>
         </member>
+        <member name="P:Cloo.ComputeImageDescription.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.Width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.Height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.Depth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.ArraySize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.RowPitch">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.SlicePitch">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.NumMipLevels">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.NumSamples">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeImageDescription.Buffer">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Cloo.ComputeImageDescription.#ctor(Cloo.ComputeMemoryType,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.IntPtr)">
             <summary>
             Creates a new <see cref="T:Cloo.ComputeImageDescription"/>.
@@ -2925,21 +3162,21 @@
             <summary>
             Gets the amount of local memory in bytes used by the <see cref="T:Cloo.ComputeKernel"/>.
             </summary>
-            <param name="device"> One of the <see cref="!:ComputeKernel.Program.Device"/>s. </param>
+            <param name="device"> One of the <see cref="T:Cloo.ComputeDevice"/>s. </param>
             <returns> The amount of local memory in bytes used by the <see cref="T:Cloo.ComputeKernel"/>. </returns>
         </member>
         <member name="M:Cloo.ComputeKernel.GetCompileWorkGroupSize(Cloo.ComputeDevice)">
             <summary>
             Gets the compile work-group size specified by the <c>__attribute__((reqd_work_group_size(X, Y, Z)))</c> qualifier.
             </summary>
-            <param name="device"> One of the <see cref="!:ComputeKernel.Program.Device"/>s. </param>
+            <param name="device"> One of the <see cref="T:Cloo.ComputeDevice"/>s. </param>
             <returns> The compile work-group size specified by the <c>__attribute__((reqd_work_group_size(X, Y, Z)))</c> qualifier. If no such qualifier is specified, (0, 0, 0) is returned. </returns>
         </member>
         <member name="M:Cloo.ComputeKernel.GetPreferredWorkGroupSizeMultiple(Cloo.ComputeDevice)">
             <summary>
             Gets the preferred multiple of workgroup size for launch. 
             </summary>
-            <param name="device"> One of the <see cref="!:ComputeKernel.Program.Device"/>s. </param>
+            <param name="device"> One of the <see cref="T:Cloo.ComputeDevice"/>s. </param>
             <returns> The preferred multiple of workgroup size for launch. </returns>
             <remarks> The returned value is a performance hint. Specifying a workgroup size that is not a multiple of the value returned by this query as the value of the local work size argument to ComputeCommandQueue.Execute will not fail to enqueue the kernel for execution unless the work-group size specified is larger than the device maximum. </remarks>
             <remarks> Requires OpenCL 1.1. </remarks>
@@ -2948,7 +3185,7 @@
             <summary>
             Gets the minimum amount of memory, in bytes, used by each work-item in the kernel.
             </summary>
-            <param name="device"> One of the <see cref="!:ComputeKernel.Program.Device"/>s. </param>
+            <param name="device"> One of the <see cref="T:Cloo.ComputeDevice"/>s. </param>
             <returns> The minimum amount of memory, in bytes, used by each work-item in the kernel. </returns>
             <remarks> The returned value may include any private memory needed by an implementation to execute the kernel, including that used by the language built-ins and variable declared inside the kernel with the <c>__private</c> or <c>private</c> qualifier. </remarks>
         </member>
@@ -2956,7 +3193,7 @@
             <summary>
             Gets the maximum work-group size that can be used to execute the <see cref="T:Cloo.ComputeKernel"/> on a <see cref="T:Cloo.ComputeDevice"/>.
             </summary>
-            <param name="device"> One of the <see cref="!:ComputeKernel.Program.Device"/>s. </param>
+            <param name="device"> One of the <see cref="T:Cloo.ComputeDevice"/>s. </param>
             <returns> The maximum work-group size that can be used to execute the <see cref="T:Cloo.ComputeKernel"/> on <paramref name="device"/>. </returns>
         </member>
         <member name="M:Cloo.ComputeKernel.SetArgument(System.Int32,System.IntPtr,System.IntPtr)">
@@ -3324,9 +3561,9 @@
         </member>
         <member name="P:Cloo.ComputeProgram.BuildOptions">
             <summary>
-            Gets the <see cref="T:Cloo.ComputeProgram"/> build options as specified in <paramref name="options"/> argument of <see cref="M:Cloo.ComputeProgram.Build(System.Collections.Generic.ICollection{Cloo.ComputeDevice},System.String,Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr)"/>.
+            Gets the <see cref="T:Cloo.ComputeProgram"/> build options/>.
             </summary>
-            <value> The <see cref="T:Cloo.ComputeProgram"/> build options as specified in <paramref name="options"/> argument of <see cref="M:Cloo.ComputeProgram.Build(System.Collections.Generic.ICollection{Cloo.ComputeDevice},System.String,Cloo.Bindings.ComputeProgramBuildNotifier,System.IntPtr)"/>. </value>
+            <value> The <see cref="T:Cloo.ComputeProgram"/> build options/>. </value>
         </member>
         <member name="P:Cloo.ComputeProgram.Context">
             <summary>
@@ -3339,7 +3576,7 @@
             Gets a read-only collection of <see cref="T:Cloo.ComputeDevice"/>s associated with the <see cref="T:Cloo.ComputeProgram"/>.
             </summary>
             <value> A read-only collection of <see cref="T:Cloo.ComputeDevice"/>s associated with the <see cref="T:Cloo.ComputeProgram"/>. </value>
-            <remarks> This collection is a subset of <see cref="!:ComputeProgram.Context.Devices"/>. </remarks>
+            <remarks> This collection is a subset of <see cref="T:Cloo.ComputeDevice"/>. </remarks>
         </member>
         <member name="P:Cloo.ComputeProgram.Source">
             <summary>
@@ -4314,50 +4551,36 @@
         <member name="F:Cloo.ComputeContextInfo.NumDevices">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeContextInfo.Platform">
-            <summary> </summary>
-        </member>
-        <member name="F:Cloo.ComputeContextInfo.InteropUserSync">
-            <summary> </summary>
-        </member>
-        <member name="T:Cloo.ComputeDevicePartitionProperty">
+        <member name="T:Cloo.ComputeDevicePartitionPropertyName">
             <summary>
             
             </summary>
         </member>
-        <member name="F:Cloo.ComputeDevicePartitionProperty.Equally">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.Equally">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDevicePartitionProperty.ByCounts">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.ByCounts">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDevicePartitionProperty.ByCountsListEnd">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomain">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDevicePartitionProperty.AffinityDomain">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomainNuma">
             <summary> </summary>
         </member>
-        <member name="T:Cloo.ComputeDeviceAffinityDomain">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Cloo.ComputeDeviceAffinityDomain.Numa">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomainL4Cache">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDeviceAffinityDomain.L4Cache">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomainL3Cache">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDeviceAffinityDomain.L3Cache">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomainL2Cache">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDeviceAffinityDomain.L2Cache">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomainL1Cache">
             <summary> </summary>
         </member>
-        <member name="F:Cloo.ComputeDeviceAffinityDomain.L1Cache">
-            <summary> </summary>
-        </member>
-        <member name="F:Cloo.ComputeDeviceAffinityDomain.NextPartitionAble">
+        <member name="F:Cloo.ComputeDevicePartitionPropertyName.AffinityDomainNextPartitionAble">
             <summary> </summary>
         </member>
         <member name="T:Cloo.ComputeDeviceSvmCapabilities">
@@ -4383,6 +4606,9 @@
             </summary>
         </member>
         <member name="F:Cloo.ComputeContextPropertyName.Platform">
+            <summary> </summary>
+        </member>
+        <member name="F:Cloo.ComputeContextPropertyName.InteropUserSync">
             <summary> </summary>
         </member>
         <member name="F:Cloo.ComputeContextPropertyName.CL_GL_CONTEXT_KHR">

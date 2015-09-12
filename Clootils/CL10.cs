@@ -593,7 +593,7 @@ namespace Cloo.Bindings
             throw new NotImplementedException();
         }
 
-        public ComputeErrorCode CreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, int num_devices, [MarshalAs(UnmanagedType.LPArray), Out] CLDeviceHandle[] devices, out IntPtr num_devices_ret)
+        public ComputeErrorCode CreateSubDevices(CLDeviceHandle device, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] properties, int num_devices, [MarshalAs(UnmanagedType.LPArray), Out] CLDeviceHandle[] devices, out int num_devices_ret)
         {
             throw new NotImplementedException();
         }

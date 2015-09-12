@@ -111,7 +111,7 @@ namespace Cloo
         {
             if (Handle.IsValid)
             {
-                CLInterface.CL20.ReleaseMemObject(Handle);
+                CLInterface.CL10.ReleaseMemObject(Handle);
                 Handle.Invalidate();
             }
         }
