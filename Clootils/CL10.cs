@@ -723,17 +723,17 @@ namespace Cloo.Bindings
             throw new NotImplementedException();
         }
 
-        public ComputeErrorCode GetPipeInfo(ComputeMemory pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret)
+        public ComputeErrorCode GetPipeInfo(CLMemoryHandle pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret)
         {
             throw new NotImplementedException();
         }
 
-        public IntPtr ComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, int alignment)
+        public CLMemoryHandle ComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, int alignment)
         {
             throw new NotImplementedException();
         }
 
-        public void ComputeSvmFree(CLContextHandle context, IntPtr svm_pointer)
+        public void ComputeSvmFree(CLContextHandle context, CLMemoryHandle svm_pointer)
         {
             throw new NotImplementedException();
         }
@@ -777,5 +777,6 @@ namespace Cloo.Bindings
         {
             throw new NotImplementedException();
         }
+
     }
 }

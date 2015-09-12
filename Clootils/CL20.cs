@@ -61,22 +61,22 @@ namespace Cloo.Bindings
         /// See the OpenCL specification.
         /// </summary>
         [DllImport(libName, EntryPoint = "clGetPipeInfo")]
-        public static extern ComputeErrorCode StaticGetPipeInfo(ComputeMemory pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
-        new public ComputeErrorCode GetPipeInfo(ComputeMemory pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret) { return StaticGetPipeInfo(pipe, param_name, param_value_size, param_value, out param_value_size_ret); }
+        public static extern ComputeErrorCode StaticGetPipeInfo(CLMemoryHandle pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
+        new public ComputeErrorCode GetPipeInfo(CLMemoryHandle pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret) { return StaticGetPipeInfo(pipe, param_name, param_value_size, param_value, out param_value_size_ret); }
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
         [DllImport(libName, EntryPoint = "clSVMAlloc")]
-        public static extern IntPtr StaticComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, Int32 alignment);
-        new public IntPtr ComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, Int32 alignment) { return StaticComputeSvmAlloc(context, flags, size, alignment); }
+        public static extern CLMemoryHandle StaticComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, Int32 alignment);
+        new public CLMemoryHandle ComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, Int32 alignment) { return StaticComputeSvmAlloc(context, flags, size, alignment); }
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
         [DllImport(libName, EntryPoint = "clSvmFree")]
-        public static extern void StaticComputeSvmFree(CLContextHandle context, IntPtr svm_pointer);
-        new public void ComputeSvmFree(CLContextHandle context, IntPtr svm_pointer) { StaticComputeSvmFree(context, svm_pointer); }
+        public static extern void StaticComputeSvmFree(CLContextHandle context, CLMemoryHandle svm_pointer);
+        new public void ComputeSvmFree(CLContextHandle context, CLMemoryHandle svm_pointer) { StaticComputeSvmFree(context, svm_pointer); }
 
         /// <summary>
         /// See the OpenCL specification.

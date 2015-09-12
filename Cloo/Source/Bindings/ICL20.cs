@@ -53,17 +53,17 @@ namespace Cloo.Bindings
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        ComputeErrorCode GetPipeInfo(ComputeMemory pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
+        ComputeErrorCode GetPipeInfo(CLMemoryHandle pipe, ComputePipeInfo param_name, IntPtr param_value_size, IntPtr param_value, out IntPtr param_value_size_ret);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        IntPtr ComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, Int32 alignment);
+        CLMemoryHandle ComputeSvmAlloc(CLContextHandle context, ComputeMemoryFlags flags, IntPtr size, Int32 alignment);
 
         /// <summary>
         /// See the OpenCL specification.
         /// </summary>
-        void ComputeSvmFree(CLContextHandle context, IntPtr svm_pointer);
+        void ComputeSvmFree(CLContextHandle context, CLMemoryHandle svm_pointer);
 
         /// <summary>
         /// See the OpenCL specification.

@@ -617,7 +617,7 @@
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.ICL20.GetPipeInfo(Cloo.ComputeMemory,Cloo.ComputePipeInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
+        <member name="M:Cloo.Bindings.ICL20.GetPipeInfo(Cloo.Bindings.CLMemoryHandle,Cloo.ComputePipeInfo,System.IntPtr,System.IntPtr,System.IntPtr@)">
             <summary>
             See the OpenCL specification.
             </summary>
@@ -627,7 +627,7 @@
             See the OpenCL specification.
             </summary>
         </member>
-        <member name="M:Cloo.Bindings.ICL20.ComputeSvmFree(Cloo.Bindings.CLContextHandle,System.IntPtr)">
+        <member name="M:Cloo.Bindings.ICL20.ComputeSvmFree(Cloo.Bindings.CLContextHandle,Cloo.Bindings.CLMemoryHandle)">
             <summary>
             See the OpenCL specification.
             </summary>
@@ -1797,6 +1797,35 @@
             <param name="events"> A collection of events that need to complete before this particular command can be executed. If <paramref name="events"/> is not <c>null</c> or read-only a new <see cref="T:Cloo.ComputeEvent"/> identifying this command is created and attached to the end of the collection. </param>
             <remarks> If <paramref name="blocking"/> is <c>true</c> this method will not return until the command completes. If <paramref name="blocking"/> is <c>false</c> this method will return immediately after the command is enqueued. </remarks>
         </member>
+        <member name="M:Cloo.ComputeCommandQueue.SVMFree(System.IntPtr[],Cloo.Bindings.ComputeFreeFunctionCallback,System.IntPtr,System.Collections.Generic.ICollection{Cloo.ComputeEventBase})">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+            <param name="svm_pointers"></param>
+            <param name="pfn_free"></param>
+            <param name="user_data"></param>
+            <param name="events"></param>
+        </member>
+        <member name="M:Cloo.ComputeCommandQueue.SVMMemcpy(System.Boolean,System.IntPtr,System.IntPtr,System.IntPtr,System.Collections.Generic.ICollection{Cloo.ComputeEventBase})">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeCommandQueue.SVMMemFill(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Collections.Generic.ICollection{Cloo.ComputeEventBase})">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeCommandQueue.SVMMap(Cloo.ComputeBoolean,Cloo.ComputeMemoryMappingFlags,System.IntPtr,System.IntPtr,System.Collections.Generic.ICollection{Cloo.ComputeEventBase})">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeCommandQueue.SVMUnMap(System.IntPtr,System.IntPtr,System.Collections.Generic.ICollection{Cloo.ComputeEventBase})">
+            <summary>
+            See the OpenCL specification.
+            </summary>
+        </member>
         <member name="M:Cloo.ComputeCommandQueue.Dispose(System.Boolean)">
             <summary>
             Releases the associated OpenCL object.
@@ -2552,6 +2581,16 @@
             <value> The OpenCL C version string supported by the <see cref="T:Cloo.ComputeDevice"/>. The version string has the following format: <c>OpenCL[space]C[space][major_version].[minor_version][space][vendor-specific information]</c>. </value>
             <remarks> Requires OpenCL 1.1. </remarks>
         </member>
+        <member name="M:Cloo.ComputeDevice.Retain">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeDevice.Release">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Cloo.ComputeDevice.GetSubDevices(Cloo.ComputeDevicePartitionPropertyList,System.Int32)">
             <summary>
             Return up to maxNumSubDevices SubDevices with the given properties
@@ -2848,6 +2887,120 @@
             Checks for an OpenCL error code and throws a <see cref="T:Cloo.ComputeException"/> if such is encountered.
             </summary>
             <param name="errorCode"> The OpenCL error code. </param>
+        </member>
+        <member name="T:Cloo.ComputePipe">
+            <summary>
+            Represents an OpenCL memory object.
+            </summary>
+            <remarks> A memory object is a handle to a region of global memory. </remarks>
+        </member>
+        <member name="P:Cloo.ComputePipe.Handle">
+            <summary>
+            The handle of the <see cref="T:Cloo.ComputePipe"/>.
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputePipe.Context">
+            <summary>
+            Gets the <see cref="T:Cloo.ComputeContext"/> of the <see cref="T:Cloo.ComputePipe"/>.
+            </summary>
+            <value> The <see cref="T:Cloo.ComputeContext"/> of the <see cref="T:Cloo.ComputePipe"/>. </value>
+        </member>
+        <member name="P:Cloo.ComputePipe.Flags">
+            <summary>
+            Gets the <see cref="T:Cloo.ComputeMemoryFlags"/> of the <see cref="T:Cloo.ComputePipe"/>.
+            </summary>
+            <value> The <see cref="T:Cloo.ComputeMemoryFlags"/> of the <see cref="T:Cloo.ComputePipe"/>. </value>
+        </member>
+        <member name="P:Cloo.ComputePipe.Size">
+            <summary>
+            Gets or sets (protected) the size in bytes of the <see cref="T:Cloo.ComputePipe"/>.
+            </summary>
+            <value> The size in bytes of the <see cref="T:Cloo.ComputePipe"/>. </value>
+        </member>
+        <member name="M:Cloo.ComputePipe.#ctor(Cloo.ComputeContext,Cloo.ComputeMemoryFlags)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="flags"></param>
+        </member>
+        <member name="M:Cloo.ComputePipe.#ctor(Cloo.ComputeContext,Cloo.ComputeMemoryFlags,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="flags"></param>
+            <param name="packetSize"></param>
+            <param name="maxPackets"></param>
+        </member>
+        <member name="M:Cloo.ComputePipe.Init">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputePipe.Dispose(System.Boolean)">
+            <summary>
+            Releases the associated OpenCL object.
+            </summary>
+            <param name="manual"> Specifies the operation mode of this method. </param>
+            <remarks> <paramref name="manual"/> must be <c>true</c> if this method is invoked directly by the application. </remarks>
+        </member>
+        <member name="T:Cloo.ComputeSharedVirtualMemory">
+            <summary>
+            Represents an OpenCL memory object.
+            </summary>
+            <remarks> A memory object is a handle to a region of global memory. </remarks>
+        </member>
+        <member name="P:Cloo.ComputeSharedVirtualMemory.Handle">
+            <summary>
+            The handle of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>.
+            </summary>
+        </member>
+        <member name="P:Cloo.ComputeSharedVirtualMemory.Context">
+            <summary>
+            Gets the <see cref="T:Cloo.ComputeContext"/> of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>.
+            </summary>
+            <value> The <see cref="T:Cloo.ComputeContext"/> of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>. </value>
+        </member>
+        <member name="P:Cloo.ComputeSharedVirtualMemory.Flags">
+            <summary>
+            Gets the <see cref="T:Cloo.ComputeMemoryFlags"/> of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>.
+            </summary>
+            <value> The <see cref="T:Cloo.ComputeMemoryFlags"/> of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>. </value>
+        </member>
+        <member name="P:Cloo.ComputeSharedVirtualMemory.Size">
+            <summary>
+            Gets or sets (protected) the size in bytes of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>.
+            </summary>
+            <value> The size in bytes of the <see cref="T:Cloo.ComputeSharedVirtualMemory"/>. </value>
+        </member>
+        <member name="M:Cloo.ComputeSharedVirtualMemory.#ctor(Cloo.ComputeContext,Cloo.ComputeMemoryFlags)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="flags"></param>
+        </member>
+        <member name="M:Cloo.ComputeSharedVirtualMemory.#ctor(Cloo.ComputeContext,Cloo.ComputeMemoryFlags,System.Int64,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="flags"></param>
+            <param name="size"></param>
+            <param name="alignment"></param>
+        </member>
+        <member name="M:Cloo.ComputeSharedVirtualMemory.Init">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Cloo.ComputeSharedVirtualMemory.Dispose(System.Boolean)">
+            <summary>
+            Releases the associated OpenCL object.
+            </summary>
+            <param name="manual"> Specifies the operation mode of this method. </param>
+            <remarks> <paramref name="manual"/> must be <c>true</c> if this method is invoked directly by the application. </remarks>
         </member>
         <member name="T:Cloo.ComputeImage">
             <summary>
@@ -3208,6 +3361,19 @@
             <br/>
             Note that this method does not provide argument tracking. It is up to the user to reference the kernel arguments (i.e. prevent them from being garbage collected) until the kernel has finished execution.
             </remarks>
+        </member>
+        <member name="M:Cloo.ComputeKernel.SetSvmArgument(System.Int32,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="svm"></param>
+        </member>
+        <member name="M:Cloo.ComputeKernel.SetSvmExecInfo(System.IntPtr[])">
+            <summary>
+            
+            </summary>
+            <param name="ptrList"></param>
         </member>
         <member name="M:Cloo.ComputeKernel.SetLocalArgument(System.Int32,System.Int64)">
             <summary>

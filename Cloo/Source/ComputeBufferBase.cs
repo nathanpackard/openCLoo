@@ -74,7 +74,6 @@ namespace Cloo
         protected void Init()
         {
             SetID(Handle.Value);
-
             Size = (long)GetInfo<CLMemoryHandle, ComputeMemoryInfo, IntPtr>(Handle, ComputeMemoryInfo.Size, CLInterface.CL10.GetMemObjectInfo);
             Count = Size / Marshal.SizeOf(typeof(T));
         }

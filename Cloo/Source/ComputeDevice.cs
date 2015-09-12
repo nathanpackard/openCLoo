@@ -602,6 +602,28 @@ namespace Cloo
             version = GetStringInfo(ComputeDeviceInfo.Version);
         }
 
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Retain()
+        {
+            ComputeErrorCode error = CLInterface.CL12.RetainDevice(Handle);
+            ComputeException.ThrowOnError(error);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Release()
+        {
+            ComputeErrorCode error = CLInterface.CL12.ReleaseDevice(Handle);
+            ComputeException.ThrowOnError(error);
+        }
+
         /// <summary>
         /// Return up to maxNumSubDevices SubDevices with the given properties
         /// </summary>

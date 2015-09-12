@@ -191,7 +191,34 @@ namespace Cloo
         /// </remarks>
         public void SetArgument(int index, IntPtr dataSize, IntPtr dataAddr)
         {
-            ComputeErrorCode error = CLInterface.CL10.SetKernelArg(Handle, index, dataSize, dataAddr);
+            ComputeErrorCode error;
+            error = CLInterface.CL10.SetKernelArg(Handle, index, dataSize, dataAddr);
+            ComputeException.ThrowOnError(error);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="svm"></param>
+        public void SetSvmArgument(int index, IntPtr svm)
+        {
+            ComputeErrorCode error;
+            error = CLInterface.CL20.SetKernelArgSvmPointer(Handle, index, svm);
+            ComputeException.ThrowOnError(error);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ptrList"></param>
+        public void SetSvmExecInfo(IntPtr[] ptrList)
+        {
+            GCHandle pinnedArray = GCHandle.Alloc(ptrList, GCHandleType.Pinned);
+            IntPtr pointer = pinnedArray.AddrOfPinnedObject();
+            ComputeErrorCode error;
+            error = CLInterface.CL20.SetKernelExecInfo(Handle, ComputeExecInfo.SvmPtrs, new IntPtr(IntPtr.Size * ptrList.Length), pointer);
+            pinnedArray.Free();
             ComputeException.ThrowOnError(error);
         }
 

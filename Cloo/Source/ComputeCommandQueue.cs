@@ -678,10 +678,87 @@ namespace Cloo
             CLEventHandle[] eventHandles = ComputeTools.ExtractHandles(events, out eventWaitListSize);
             bool eventsWritable = (events != null && !events.IsReadOnly);
             CLEventHandle newEventHandle;
-
             ComputeErrorCode error = CLInterface.CL10.EnqueueWriteImage(Handle, destination.Handle, blocking, ref destinationOffset, ref region, new IntPtr(rowPitch), new IntPtr(slicePitch), source, eventWaitListSize, eventHandles, out newEventHandle);
             ComputeException.ThrowOnError(error);
+            if (eventsWritable)
+                events.Add(new ComputeEvent(newEventHandle, this));
+        }
 
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
+        /// <param name="svm_pointers"></param>
+        /// <param name="pfn_free"></param>
+        /// <param name="user_data"></param>
+        /// <param name="events"></param>
+        public void SVMFree(IntPtr[] svm_pointers, ComputeFreeFunctionCallback pfn_free, IntPtr user_data, ICollection<ComputeEventBase> events)
+        {
+            int eventWaitListSize;
+            CLEventHandle[] eventHandles = ComputeTools.ExtractHandles(events, out eventWaitListSize);
+            bool eventsWritable = (events != null && !events.IsReadOnly);
+            CLEventHandle newEventHandle;
+            ComputeErrorCode error = CLInterface.CL20.EnqueueSVMFree(Handle, svm_pointers.Length, svm_pointers, pfn_free, user_data, eventWaitListSize, eventHandles, out newEventHandle);
+            ComputeException.ThrowOnError(error);
+            if (eventsWritable)
+                events.Add(new ComputeEvent(newEventHandle, this));
+        }
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
+        public void SVMMemcpy(bool blocking_copy, IntPtr dst_ptr, IntPtr src_ptr, IntPtr size, ICollection<ComputeEventBase> events)
+        {
+            int eventWaitListSize;
+            CLEventHandle[] eventHandles = ComputeTools.ExtractHandles(events, out eventWaitListSize);
+            bool eventsWritable = (events != null && !events.IsReadOnly);
+            CLEventHandle newEventHandle;
+            ComputeErrorCode error = CLInterface.CL20.EnqueueSVMMemcpy(Handle, (blocking_copy ? ComputeBoolean.True : ComputeBoolean.False), dst_ptr, src_ptr, size, eventWaitListSize, eventHandles, out newEventHandle);
+            ComputeException.ThrowOnError(error);
+            if (eventsWritable)
+                events.Add(new ComputeEvent(newEventHandle, this));
+        }
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
+        public void SVMMemFill(IntPtr svm_ptr, IntPtr pattern, int pattern_size, int size, ICollection<ComputeEventBase> events)
+        {
+            int eventWaitListSize;
+            CLEventHandle[] eventHandles = ComputeTools.ExtractHandles(events, out eventWaitListSize);
+            bool eventsWritable = (events != null && !events.IsReadOnly);
+            CLEventHandle newEventHandle;
+            ComputeErrorCode error = CLInterface.CL20.EnqueueSVMMemFill(Handle, svm_ptr, pattern, new IntPtr(pattern_size), new IntPtr(size), eventWaitListSize, eventHandles, out newEventHandle);
+            ComputeException.ThrowOnError(error);
+            if (eventsWritable)
+                events.Add(new ComputeEvent(newEventHandle, this));
+        }
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
+        public void SVMMap(ComputeBoolean blocking_map, ComputeMemoryMappingFlags flags, IntPtr svm_ptr, IntPtr size, ICollection<ComputeEventBase> events)
+        {
+            int eventWaitListSize;
+            CLEventHandle[] eventHandles = ComputeTools.ExtractHandles(events, out eventWaitListSize);
+            bool eventsWritable = (events != null && !events.IsReadOnly);
+            CLEventHandle newEventHandle;
+            ComputeErrorCode error = CLInterface.CL20.EnqueueSVMMap(Handle, blocking_map, flags, svm_ptr, size, eventWaitListSize, eventHandles, out newEventHandle);
+            ComputeException.ThrowOnError(error);
+            if (eventsWritable)
+                events.Add(new ComputeEvent(newEventHandle, this));
+        }
+
+        /// <summary>
+        /// See the OpenCL specification.
+        /// </summary>
+        public void SVMUnMap(IntPtr svm_ptr, IntPtr size, ICollection<ComputeEventBase> events)
+        {
+            int eventWaitListSize;
+            CLEventHandle[] eventHandles = ComputeTools.ExtractHandles(events, out eventWaitListSize);
+            bool eventsWritable = (events != null && !events.IsReadOnly);
+            CLEventHandle newEventHandle;
+            ComputeErrorCode error = CLInterface.CL20.EnqueueSVMUnMap(Handle, svm_ptr, size, eventWaitListSize, eventHandles, out newEventHandle);
+            ComputeException.ThrowOnError(error);
             if (eventsWritable)
                 events.Add(new ComputeEvent(newEventHandle, this));
         }
